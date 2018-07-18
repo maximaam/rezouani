@@ -1,0 +1,13 @@
+label:
+    more: More
+    welcome:
+        title: Welcome to FABINI
+        sub-title: Leder aus Leidenschafft!
+        desc: bla bla bla
+    top-products: Top Produkte
+    details: Details anzeigen
+
+nav:
+    main:
+        label: About us
+        route: about_us_en

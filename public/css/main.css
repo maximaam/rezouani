@@ -1,0 +1,362 @@
+body {
+    background: #fff;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #333;
+}
+
+main {
+    min-height: 80rem;
+    margin-top: 80px;
+    padding: 20px 0;
+}
+
+header.main-header {
+    background: #333;
+}
+
+h1 {
+    font-size: 1.7rem;
+}
+
+h2 {
+    font-size: 1.2rem;
+}
+
+footer.main-footer {
+    background: #284a49;
+    padding: 15px 0;
+}
+.fa-facebook-official,
+.fa-twitter {
+    font-size: 48px;
+    margin-left: 30px;
+    float: right;
+    color: #fff;
+}
+.footer-nav {
+    list-style: none;
+}
+.footer-nav a {
+    color: #fff;
+}
+
+.navbar {
+    background: #333;
+}
+
+.navbar-nav .nav-item {
+    margin-right: 5px;
+}
+
+.navbar-nav a.nav-link {
+    color: #fff !important;
+    letter-spacing: 1px;
+    border-radius: .3rem;
+    -webkit-transition: all .2s ease-in-out;
+    -o-transition: all .2s ease-in-out;
+    transition: all .2s ease-in-out;
+    padding: .75rem 1.5rem;
+    background: rgba(105,164,163,.2);
+}
+.navbar-nav a.nav-link:hover,
+.nav-item.current a.nav-link {
+    background: rgba(105,164,163,.8);
+}
+.navbar .user-cart > a {
+    margin-left: 10px;
+    position: relative;
+    background: #333;
+    padding: 2px 5px;
+    border-radius: 4px;
+    width: 50px;
+    height: 44px;
+    text-align: center;
+}
+
+.navbar .user-cart > a.logged i {
+    color: #CC9A00;
+}
+
+.navbar .user-cart a span {
+    position: absolute;
+    top: -5px;
+    left: 0;
+    font-size: 14px;
+    background: #999;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    color: #fff;
+}
+
+.navbar .user-cart a span.active {
+    background: red;
+}
+.navbar .user-cart a i {
+    color: #fff;
+    font-size: 2.5rem;
+}
+
+.languages {
+    margin: 0 0 0 10px;
+    padding: 0 10px;
+    list-style: none;
+    border-left: 1px solid #fff;
+}
+.languages li:first-child {
+    border-bottom: 1px solid #999;
+}
+.languages li:last-child {
+}
+
+.languages a {
+    color: #999;
+}
+.languages a:hover,
+.languages a.current {
+    color: #fff;
+    text-decoration: none;
+}
+
+
+.jumbotron {
+    background: url("../images/bg-multi.jpg");
+    color: #fff;
+    min-height: 300px;
+    background-size: cover;
+    border-radius: 0;
+    margin-top: -30px !important;
+}
+.jumbotron h1 {
+    text-shadow: 1px 1px 2px #333;
+    font-family: 'Titillium Web', sans-serif;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+}
+.jumbotron h2 {
+    margin-bottom: 30px;
+}
+
+.btn-primary {
+    background: #69A4A3;
+    border: none;
+}
+.btn-primary:hover {
+    background: #93cfce;
+}
+
+
+.single-item {
+    padding: 5px 10px;
+    box-shadow: 0 0 3px #ccc;
+    margin-bottom: 20px;
+}
+.a-single-item, .a-single-item:hover {
+    color: #333;
+    text-decoration: none;
+}
+
+.single-item h2 {
+    font-size: 1rem;
+    font-weight: 600;
+    min-height: 50px;
+}
+
+.card-img-top {
+    width: 100%;
+    height: 160px;
+    margin-bottom: 10px;
+}
+
+.product-details {
+    margin-top: 20px;
+}
+
+.card-header h1 {
+    font-size: 1.5em;
+}
+
+.navbar-subcategory {
+    padding: 10px 10px 10px 20px;
+    list-style: none;
+    margin-bottom: 30px;
+}
+
+.navbar-subcategory li {
+    border-bottom: 1px dotted #ccc;
+    margin-bottom: 10px;
+}
+.navbar-subcategory li a {
+    color: #333;
+}
+.navbar-subcategory li a:hover,
+.navbar-subcategory li.current a {
+    color: #69A4A3;
+}
+
+.cat-desc {
+    color: #999;
+    font-style: italic;
+}
+
+.carousel-item {
+    text-align: center;
+}
+
+.carousel-img {
+    /*
+    width: 100%;
+    height: 500px;
+    */
+}
+
+#overlay {
+    background: rgba(0,0,0,.7);
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    z-index: 99999;
+    display: none;
+}
+
+#overlay img {
+    display: block;
+    margin: 100px auto;
+}
+
+.btn-paypal {
+    background: #faa628 url(../images/paypal-icon.png) no-repeat;
+    height: 54px;
+    padding-left: 60px;
+    color: #fff;
+    font-weight: 700;
+    font-size: 1.7em;
+    box-shadow: 1px 2px 3px #999;
+}
+.btn-paypal:hover {
+    background-color: #007bc2;
+    color: #fff;
+}
+
+.form-group {
+    overflow: hidden;
+}
+
+#search {
+
+}
+#query {
+    width: 280px;
+    border: 2px solid #ccc;
+    border-radius: .25rem;
+    font-size: 16px;
+    background: #fff url('../images/searchicon.png') no-repeat 10px 10px;
+    padding: 6px 20px 6px 40px;
+    -webkit-transition: width 0.4s ease-in-out;
+    transition: width 0.4s ease-in-out;
+}
+
+.product-cart-form {
+    padding: 10px;
+    background: #ccc;
+    float: right;
+    margin-top: 20px;
+}
+.product-cart-form .form-group {
+    margin-left: 10px;
+}
+
+.carousel-control-next,
+.carousel-control-prev {
+    background: #ccc;
+    width: 10%;
+}
+
+@media (min-width:1025px) { /* big landscape tablets, laptops, and desktops */
+
+    /*
+    .navbar-subcategory {
+        position: relative;
+        top: -40px;
+        padding-top: 40px;
+        min-height: 300px;
+    }
+    */
+}
+@media only screen and (min-width : 320px) and (max-width : 1024px) {
+    .card-img-top {
+        height: auto;
+    }
+
+}
+
+/* Smartphones (portrait and landscape) ----------- */
+
+@media only screen and (min-width : 320px) and (max-width : 480px) {
+
+    .jumbotron h1 {
+        font-size: 2.5rem;
+    }
+    .navbar-nav a.nav-link {
+        background: transparent;
+        border-bottom: 1px solid #ccc;
+        border-radius: 0;
+    }
+
+    .fa-facebook-official, .fa-twitter {
+        float: none;
+    }
+    .copyright {
+        text-align: center;
+    }
+
+    .socials {
+        text-align: center;
+    }
+
+    .carousel-img {
+        width: 100%;
+    }
+
+}
+@media only screen and (min-width : 480px) and (max-width : 768px) {
+
+
+
+
+}
+@media only screen and (min-width : 768px) and (max-width : 1024px) {
+
+}
+
+/*b0b04d
+@media screen
+and (min-width: 1200px)
+and (max-width: 1600px)
+and (-webkit-min-device-pixel-ratio: 1) {
+    .jumbotron { background-position-x: 510px}
+}
+*/
+
+/* Smartphones (portrait and landscape) ----------- */
+/*
+@media only screen and (min-width : 320px) and (max-width : 480px) {
+    .jumbotron { background-position-x: -400px}
+    .jumbotron h1 { font-size: 2.5rem; margin-top: 40px}
+    .jumbotron p { width: 65%}
+}
+@media only screen and (min-width : 480px) and (max-width : 768px) {
+    .jumbotron { background-position-x: -150px}
+    .jumbotron h1 { font-size: 2.5rem; margin-top: 40px}
+    .jumbotron p { width: 65%}
+}
+@media only screen and (min-width : 768px) and (max-width : 1024px) {
+    .jumbotron { background-position-x: -50px}
+    .jumbotron h1 { font-size: 2.5rem; margin-top: 40px}
+    .jumbotron p { width: 65%}
+}
+*/

@@ -1,0 +1,25 @@
+fos_user:
+    db_driver: orm # other valid values are 'mongodb' and 'couchdb'
+    firewall_name: main
+    user_class: App\Entity\User
+
+    service:
+        mailer: fos_user.mailer.twig_swift
+
+    from_email:
+        address: "%mailer_user%"
+        sender_name: "%mailer_user%"
+
+    registration:
+        form:
+            type: App\Form\RegistrationType
+
+        confirmation:
+            enabled: true
+            from_email:
+                address: mimoberlino@gmail.com
+                sender_name: Fabini
+
+    profile:
+        form:
+            type: App\Form\ProfileType

@@ -1,0 +1,176 @@
+{% extends 'base.html.twig' %}
+
+{% block js_head %}
+    <script src="https://www.paypalobjects.com/api/checkout.js"></script>
+{% endblock %}
+
+{% block body %}
+
+    <div class="container">
+        <div class="row">
+
+        {% if cart is defined and cart|length  %}
+
+                {% set products = cart.products %}
+                {% set totals = cart.totals %}
+
+                <div class="table-responsive">
+                    <h1 class="text-center">{{ 'cart.my-cart'|trans }}</h1>
+                    <table class="table table-stripped table-hover">
+                        <thead>
+                            <tr>
+                                <th>{{ 'label.title'|trans }}</th>
+                                <th>{{ 'label.product-number'|trans }}</th>
+                                <th>{{ 'label.color'|trans }}</th>
+                                <th>{{ 'label.size'|trans }}</th>
+                                <th>{{ 'label.quantity'|trans }}</th>
+                                <th>{{ 'label.price-unit'|trans }}</th>
+                                <th>{{ 'label.price-total'|trans }}</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                        {% for id, product in products %}
+
+                            <tr>
+                                <td>{{ product.title }}</td>
+                                <td>{{ product.productNumber }}</td>
+                                <td>{{ product.color|trans }}</td>
+                                <td>{{ product.size|length > 0 ? product.size : '-' }}</td>
+                                <td>{{ product.quantity }}</td>
+                                <td>{{ product.price|number_format(2, ',', '.') }} <i class="fa fa-eur"></i></td>
+                                <td>{{ product.fullPrice|number_format(2, ',', '.') }} <i class="fa fa-eur"></i></td>
+                                <td>
+                                    <div class="pull-right">
+
+                                        <a href="{{ path('app_cart_remove', {'id': id}) }}" title="{{ 'form.delete'|trans }}" rel="nofollow" class="btn btn-danger">
+                                            <i class="fa fa-trash"></i>
+                                        </a>
+                                    </div>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+
+                        <tfoot>
+                            <tr>
+                                <td colspan="5"></td>
+                                <td class="font-weight-bold">{{ 'label.total-excl-tax'|trans }}</td>
+                                <td>{{ totals.excl_tax|number_format(2, ',', '.') }} <i class="fa fa-eur"></i></td>
+                            </tr>
+                            <tr>
+                                <td colspan="5"></td>
+                                <td class="font-weight-bold">{{ 'label.vat'|trans }}</td>
+                                <td>{{ totals.vat|number_format(2, ',', '.') }} <i class="fa fa-eur"></i></td>
+                            </tr>
+                            <tr>
+                                <td colspan="5"></td>
+                                <td class="font-weight-bold">{{ 'label.total-incl-tax'|trans }}</td>
+                                <td>{{ totals.total|number_format(2, ',', '.') }} <i class="fa fa-eur"></i></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <a href="#">
+                                        <i class="fa fa-tag"></i>
+                                        {{ 'cart.continue-shopping'|trans }}
+                                    </a>
+                                </td>
+                                <td colspan="6" class="text-right">
+
+                                    <div id="paypal-button"></div>
+
+                                    <script>
+                                        paypal.Button.render({
+
+                                            env: 'sandbox', // sandbox | production
+
+                                            // PayPal Client IDs - replace with your own
+                                            // Create a PayPal app: https://developer.paypal.com/developer/applications/create
+                                            client: {
+                                                sandbox:'Ac0fAc4OEB3v6EBakEo6KQcFoIhmJwsrnvCDFuydXCzQZoDQPVEkaFvxwxJ_fWo6ABTHt0UY370CXPs6',
+                                                production:'Ad6WCjJRMUK7XMKUO4VUWKWbJKlZCHI_XwSqpgGYmJlizc2X9l-vsKaZ-aIE4deyPT88nLiZngHZmApE'
+                                            },
+
+                                            // Show the buyer a 'Pay Now' button in the checkout flow
+                                            //commit: true,
+
+                                            locale: '{{ app.request.locale == 'de'  ? 'de_DE' }}',
+
+                                            style: {
+                                                color: 'gold',
+                                                size: 'medium'
+                                            },
+
+                                            // payment() is called when the button is clicked
+                                            payment: function(data, actions) {
+
+                                                // Make a call to the REST api to create the payment
+                                                return actions.payment.create({
+                                                    payment: {
+                                                        transactions: [
+                                                            {
+                                                                amount: { total: '{{ totals.total }}', currency: 'EUR' }
+                                                            }
+                                                        ],
+                                                        redirect_urls: {
+                                                            return_url: '{{ path("app_cart_confirm-payment") }}',
+                                                            cancel_url: '{{ path("app_cart_cancel-payment") }}'
+                                                        }
+                                                    }
+                                                });
+                                            },
+
+                                            // onAuthorize() is called when the buyer approves the payment
+                                            onAuthorize: function(data, actions) {
+                                                //return actions.redirect();
+
+                                                return actions.payment.get().then(function(paymentDetails) {
+                                                    $.post('{{ path("app_cart_create-payment") }}', {paymentDetails: paymentDetails})
+                                                        .done(function( status ) {
+
+                                                            $('#overlay').show();
+
+                                                            return actions.payment.execute().then(function() {
+                                                                actions.redirect();
+                                                            });
+                                                        });
+                                                });
+                                            },
+
+                                            onCancel: function(data, actions) {
+                                                actions.redirect();
+                                            },
+
+                                            onError: function(err) {
+                                                /*
+                                                 * An error occurred during the transaction
+                                                 */
+                                            }
+
+                                        }, '#paypal-button');
+
+                                    </script>
+
+
+
+                                </td>
+                            </tr>
+                        </tfoot>
+
+                    </table>
+                </div>
+
+            {% else %}
+
+                <div class="alert alert-warning">
+                    <span class="fa fa-flag"></span>
+                    {{ 'cart.empty'|trans }}
+                </div>
+
+            {% endif %}
+
+        </div>
+    </div>
+
+{% endblock %}

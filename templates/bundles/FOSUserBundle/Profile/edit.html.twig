@@ -1,0 +1,92 @@
+{% extends "@FOSUser/layout.html.twig" %}
+
+{% block fos_user_content %}
+
+    <h1 class="text-center">{{ 'user.profile_edit'|trans }}</h1>
+    <hr>
+
+    {{ form_start(form, {'method': 'post', 'action': path('fos_user_profile_edit'), 'attr': {'class': 'form-horizontal'}}) }}
+
+    <div class="form-group">
+        {{ form_errors(form.name) }}
+        {{ form_label(form.name, 'form.register.name'|trans({}, 'messages')) }}
+        {{ form_widget(form.name) }}
+    </div>
+
+    {{ form_row(form.email) }}
+
+    <div class="row register-address">
+        <div class="col-md-6">
+            <h3 class="text-center">{{ 'form.register.address_header'|trans({}, 'messages') }}</h3>
+
+            <div class="form-group">
+                {{ form_errors(form.address) }}
+                {{ form_label(form.address, 'form.register.address'|trans({}, 'messages')) }}
+                {{ form_widget(form.address) }}
+            </div>
+
+            <div class="form-group">
+                {{ form_errors(form.zip) }}
+                {{ form_label(form.zip, 'form.register.zip'|trans({}, 'messages')) }}
+                {{ form_widget(form.zip) }}
+            </div>
+
+            <div class="form-group">
+                {{ form_errors(form.city) }}
+                {{ form_label(form.city, 'form.register.city'|trans({}, 'messages')) }}
+                {{ form_widget(form.city) }}
+            </div>
+
+            <div class="form-group">
+                {{ form_errors(form.country) }}
+                {{ form_label(form.country, 'form.register.country'|trans({}, 'messages')) }}
+                {{ form_widget(form.country) }}
+            </div>
+        </div>
+        <div class="col-md-6">
+            <h3 class="text-center">{{ 'form.register.address_shipping_header'|trans({}, 'messages') }}</h3>
+
+            <div class="form-group">
+                {{ form_errors(form.addressShipping) }}
+                {{ form_label(form.addressShipping, 'form.register.address'|trans({}, 'messages')) }}
+                {{ form_widget(form.addressShipping) }}
+            </div>
+
+            <div class="form-group">
+                {{ form_errors(form.zipShipping) }}
+                {{ form_label(form.zipShipping, 'form.register.zip'|trans({}, 'messages')) }}
+                {{ form_widget(form.zipShipping) }}
+            </div>
+
+            <div class="form-group">
+                {{ form_errors(form.cityShipping) }}
+                {{ form_label(form.cityShipping, 'form.register.city'|trans({}, 'messages')) }}
+                {{ form_widget(form.cityShipping) }}
+            </div>
+
+            <div class="form-group">
+                {{ form_errors(form.countryShipping) }}
+                {{ form_label(form.countryShipping, 'form.register.country'|trans({}, 'messages')) }}
+                {{ form_widget(form.countryShipping) }}
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <a href="{{ path('fos_user_profile_show') }}">
+            {{ 'form.cancel'|trans({}, 'messages') }}
+        </a>
+
+        <div class="pull-right">
+            <button type="submit" id="_submit" name="_submit" class="btn btn-primary">
+                {{ 'form.submit'|trans }}
+            </button>
+        </div>
+    </div>
+
+
+    {{ form_end(form) }}
+
+
+
+{% endblock %}

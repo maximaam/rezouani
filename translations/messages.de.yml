@@ -1,0 +1,113 @@
+label:
+    more: Mehr
+    welcome:
+        title: Willkommen bei FABINI
+        sub-title: Leder aus Leidenschafft!
+        desc: |
+            Fabini ist ein Unternehmen mit sitzt in Berlin, was sich besonders in Leder spazielisiert hat.
+            Ob Damenportemonnaies, Kellnerportemonnaies, Schlüsseltaschen...
+    top-products: Top Produkte
+    details: Details anzeigen
+    price: Preis
+    color: Farbe
+    size: Größe
+    quantity: Menge
+    colors-set:
+        white: Weiss
+        black: Schwarz
+    submit: Senden
+    edit: Bearbeiten
+    delete: Löschen
+    back: Zurück
+    show: Anzeigen
+    cancel: Abrechen
+    search: Suche
+    logout: Abmelden
+    login: Anmelden
+    title: Titel
+    price-unit: Preis
+    price-total: Gesamtpreis
+    total-excl-tax: Summe
+    total-incl-tax: Zwischensumme (inlc. MwSt.)
+    vat: MwSt.
+    product-number: Produkt-Nummer
+    product-name: Produkt-Name
+    colors-available: Farben
+    sizes-available: Größen
+
+
+hello: Hallo
+
+
+red: Rot
+white: Weiss
+yellow: Gelb
+gray: Grau
+silver: Silber
+burlywood: Naturbraun
+brown: Braun
+maroon: Dunkelbraun
+darkred: Bordeaux
+black: Schwarz
+green: Grün
+lightgreen: Hellgrün
+blue: Blau
+lightblue: Hellblau
+darkblue: Dunkelblau
+pink: Rose
+violet: Lila
+purple: Violett
+fuchsia: Fuchsia
+beige: Beige
+gold: Gold
+orange: Orange
+
+
+
+routes:
+    about-us: ueber-uns
+
+msg:
+    confirm_delete: Löschen bestätigen?
+    no_products_in_category: Zurzeit keine Ware in dieser Kategorie
+    thanks-for-order: Vielen Dank für Ihre Bestellung
+    email-sent: Eine Email wurde an %buyer_email% gesendet mit der Gesamten Übersicht.
+    error-to-cart-params: Fehler! Bitte korrigieren Sie Ihr Auswhal (Farbe, Größe, Menge...)
+
+
+user:
+    my_profile: Mein Profil
+    name: Vor- und Nachname
+    email: Email
+    address_shipping: Lieferadresse
+    address_billing: Rechnungadresse
+    password_edit: Passwort ändern
+    address_register: Addresse, Straße und Hausnummer
+    zip: Postleizahl
+    city: Stadt
+    country: Land
+    my_orderings: My transactions
+
+cart:
+    to-cart: In den Warenkorb
+    my-cart: Ihr Warenkorb
+    pay-now: Jetzt mit PayPal zahlen!
+    continue-shopping: Weiter einkaufen
+    empty: Ihr Warenkorb ist leer
+    order-overview: Bestellung Übersicht
+    paypal-shipping-address: PayPal Liferadresse
+
+nav:
+    main:
+        label: Über uns
+        route: about_us_de
+
+payment:
+    email-subject: Ihre Bestellung bei FABINI
+    email-msg-part1: Hallo %buyer_name%,
+    email-msg-part2: Vielen Dank für Ihren Kauf!
+    email-msg-part3: Bestellungsübersicht:
+    email-msg-part4: Lieferadresse:
+    email-msg-part5: Ihr FABINI-Team
+
+copyright: Copyright FABINI-REZ - Alle Rechte vorbehalten

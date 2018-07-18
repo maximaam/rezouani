@@ -1,0 +1,103 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    {% if cart is defined and cart|length  %}
+
+        {% set products = cart.products %}
+        {% set totals = cart.totals %}
+
+        <div class="container">
+
+
+            <div class="row">
+                <div class="table-responsive">
+
+                    <div class="alert alert-success">
+                        {{ 'msg.thanks-for-order'|trans }}
+                    </div>
+                    <p>
+                        {{ 'msg.email-sent'|trans({'%buyer_email%': payment.buyerEmail}) }}
+                    </p>
+
+
+                    <h1 class="text-center">{{ 'cart.order-overview'|trans }}</h1>
+                    <br>
+
+                    <table class="table table-stripped table-hover">
+                        <thead>
+                        <tr>
+                            <th>{{ 'label.title'|trans }}</th>
+                            <th>{{ 'label.product-number'|trans }}</th>
+                            <th>{{ 'label.color'|trans }}</th>
+                            <th>{{ 'label.size'|trans }}</th>
+                            <th>{{ 'label.quantity'|trans }}</th>
+                            <th>{{ 'label.price-unit'|trans }}</th>
+                            <th>{{ 'label.price-total'|trans }}</th>
+                        </tr>
+                        </thead>
+
+                        <tbody>
+                        {% for id, product in products %}
+
+                            <tr>
+                                <td>{{ product.title }}</td>
+                                <td>{{ product.productNumber }}</td>
+                                <td>{{ product.color|trans }}</td>
+                                <td>{{ product.size }}</td>
+                                <td>{{ product.quantity }}</td>
+                                <td>{{ product.price|number_format(2, ',', '.') }} <i class="fa fa-eur"></i></td>
+                                <td>{{ product.fullPrice|number_format(2, ',', '.') }} <i class="fa fa-eur"></i></td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+
+                        <tfoot>
+                            <tr>
+                                <td colspan="5"></td>
+                                <td class="font-weight-bold">{{ 'label.total-excl-tax'|trans }}</td>
+                                <td>{{ totals.excl_tax|number_format(2, ',', '.') }} <i class="fa fa-eur"></i></td>
+                            </tr>
+                            <tr>
+                                <td colspan="5"></td>
+                                <td class="font-weight-bold">{{ 'label.vat'|trans }}</td>
+                                <td>{{ totals.vat|number_format(2, ',', '.') }} <i class="fa fa-eur"></i></td>
+                            </tr>
+                            <tr>
+                                <td colspan="5"></td>
+                                <td class="font-weight-bold">{{ 'label.total-incl-tax'|trans }}</td>
+                                <td>{{ totals.total|number_format(2, ',', '.') }} <i class="fa fa-eur"></i></td>
+                            </tr>
+
+                            <tr>
+                                <td colspan="7">
+                                    <h2>{{ 'cart.paypal-shipping-address'|trans }}</h2>
+                                    <br>
+                                    <address>
+                                        {% set addr = payment.paypalPaymentDetails.payer.payer_info.shipping_address %}
+                                        <h3>{{ payment.buyerName }}</h3>
+                                        <p>
+                                            {{ addr.line1 }}<br>
+                                            {{ addr.postal_code }} {{ addr.city }}<br>
+                                            {{ addr.country_code }}<br>
+                                        </p>
+                                    </address>
+                                </td>
+                            </tr>
+                        </tfoot>
+
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    {% else %}
+
+        <div class="alert alert-warning">
+            <span class="fa fa-flag"></span>
+            {{ 'cart.empty'|trans }}
+        </div>
+
+    {% endif %}
+
+{% endblock %}

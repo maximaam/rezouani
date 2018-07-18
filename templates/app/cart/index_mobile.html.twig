@@ -1,0 +1,71 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    {% if cart is defined and cart|length  %}
+
+        {% set products = cart.products %}
+        {% set totals = cart.totals %}
+
+        <h1 class="text-center">{{ 'product.my_cart'|trans }}</h1>
+
+        <hr>
+
+        {% for id, product in products %}
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <h3>{{ product.title }}</h3>
+                    <hr>
+                    <dl class="dl-horizontal">
+                        <dt>{{ 'product.quantity'|trans }}</dt>
+                        <dd>{{ product.quantity }}</dd>
+                        <dt>{{ 'product.size'|trans }}</dt>
+                        <dd>{{ product.size }}</dd>
+                        <dt>{{ 'product.color'|trans }}</dt>
+                        <dd>{{ product.color }}</dd>
+                        <dt>{{ 'product.price_unit'|trans }}</dt>
+                        <dd>{{ product.price|number_format(2, ',', '.') }} <i class="glyphicon glyphicon-eur"></i></dd>
+                        <dt>{{ 'product.price_total'|trans }}</dt>
+                        <dd>{{ product.fullPrice|number_format(2, ',', '.') }} <i class="glyphicon glyphicon-eur"></i></dd>
+                    </dl>
+
+                </div>
+
+                <div class="panel-footer clearfix">
+                    <div class="pull-right">
+                        <a href="{{ path('app_core_product', {'id': id, 'slug': product.slug}) }}" title="{{ 'form.edit'|trans }}" rel="nofollow" class="btn btn-primary">
+                            <i class="glyphicon glyphicon-edit"></i>
+                        </a>
+                        <a href="{{ path('app_cart_remove', {'id': id}) }}" title="{{ 'form.delete'|trans }}" rel="nofollow" class="btn btn-danger">
+                            <i class="glyphicon glyphicon-trash"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+
+        <dl class="dl-horizontal">
+            <dt>Total HT</dt>
+            <dd class="text-right">{{ totals.excl_tax|number_format(2, ',', '.') }} <i class="glyphicon glyphicon-eur"></i></dd>
+            <dt>TVA</dt>
+            <dd class="text-right">{{ totals.vat|number_format(2, ',', '.') }} <i class="glyphicon glyphicon-eur"></i></dd>
+            <dt>Total TTC</dt>
+            <dd class="text-right">{{ totals.total|number_format(2, ',', '.') }} <i class="glyphicon glyphicon-eur"></i></dd>
+        </dl>
+
+        <a href="{{ path('app_cart_initpayment') }}" class="btn btn-primary btn-lg btn-block">
+            <i class="glyphicon glyphicon-tag"></i> {{ 'product.finish_shopping'|trans }}
+        </a>
+
+        <a href="{{ path('app_core_index') }}" class="btn-block text-center">{{ 'product.continue_shopping'|trans }}</a>
+
+    {% else %}
+
+        <div class="alert alert-warning">
+            <span class="glyphicon glyphicon-flag"></span>
+            {{ 'product.cart_empty'|trans }}
+        </div>
+
+    {% endif %}
+
+{% endblock %}

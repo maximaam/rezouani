@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container">
+        <div class="row">
+                <div class="col-md-3">
+                    <div class="row">
+                        <div class="container">
+                            <h1>{{ category.name(app.request.locale) }}</h1>
+                        </div>
+                    </div>
+
+                    {{ knp_menu_render('subCategory') }}
+
+                    <blockquote class="cat-desc">
+                        <i class="fa fa-quote-right"></i>
+                        <p>
+                            {{ category.description(app.request.locale)|raw }}
+                        </p>
+
+                    </blockquote>
+                </div>
+
+                <div class="col-md-9">
+
+                    {% if products|length == 0 %}
+                        <div class="alert alert-warning">
+                            {{ 'msg.no_products_in_category'|trans }}
+                        </div>
+                    {% else %}
+
+
+
+                    <div class="row">
+                        {% for product in products %}
+                            {% include 'app/partials/item.html.twig' with {product: product} %}
+                        {% endfor %}
+                    </div>
+
+                    {% endif %}
+                </div>
+
+        </div>
+    </div>
+{% endblock %}

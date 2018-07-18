@@ -1,0 +1,22 @@
+sonata_admin:
+    title: 'Admin'
+    title_logo: '/images/rezouani-logo-small.jpg'
+    show_mosaic_button: false
+
+    #options:
+        #html5_validate: false
+
+    assets:
+       extra_stylesheets:
+           - css/admin.css
+       extra_javascripts:
+           - js/admin.js
+
+    dashboard:
+        blocks:
+            - { type: sonata.admin.block.admin_list, position: left }
+
+sonata_block:
+    blocks:
+        sonata.admin.block.admin_list:
+            contexts: [admin]

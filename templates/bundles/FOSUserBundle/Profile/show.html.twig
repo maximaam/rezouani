@@ -1,0 +1,64 @@
+{% extends "@FOSUser/layout.html.twig" %}
+
+{% block fos_user_content %}
+
+    <h1 class="text-center">{{ 'user.my_profile'|trans }}</h1>
+
+    <hr>
+
+    <dl class="dl-horizontal">
+        <dt>{{ 'user.name'|trans }}</dt>
+        <dd>{{ user.name }}</dd>
+        <dt>{{ 'user.email'|trans }}</dt>
+        <dd>{{ user.email }}</dd>
+        <dt>{{ 'user.address_billing'|trans }}</dt>
+        <dd>
+            <address>
+                {{ user.address }}<br>
+                {{ user.zip }}<br>{{ user.city }}
+                {{ user.country }}
+            </address>
+        </dd>
+
+        <dt>{{ 'user.address_shipping'|trans }}</dt>
+        <dd>
+            <address>
+                {{ user.addressShipping }}<br>
+                {{ user.zipShipping  }}<br>{{ user.cityShipping }}
+                {{ user.countryShipping  }}
+            </address>
+        </dd>
+    </dl>
+
+    <div class="pull-right">
+
+        {% if is_granted("ROLE_ADMIN")  %}
+            <a href="/admin" class="btn btn-danger">
+                <i class="fa fa-cog"></i>
+                Admin
+            </a>
+        {% else %}
+            <a href="#" class="btn btn-primary">
+                <i class="fa fa-shopping-cart"></i>
+                {{ 'user.my_orderings'|trans }}
+            </a>
+        {% endif  %}
+
+
+        <a href="{{ path('fos_user_resetting_request') }}" class="btn btn-primary">
+            <i class="fa fa-lock"></i>
+            {{ 'user.password_edit'|trans }}
+        </a>
+
+        <a href="{{ path('fos_user_profile_edit') }}" class="btn btn-primary">
+            <i class="fa fa-edit"></i>
+            {{ 'label.edit'|trans }}
+        </a>
+
+        <a href="{{ path('fos_user_security_logout') }}" class="btn btn-success">
+            <i class="fa fa-sign-out"></i>
+            {{ 'label.logout'|trans }}
+        </a>
+    </div>
+
+{% endblock fos_user_content %}
