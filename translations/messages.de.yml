@@ -104,11 +104,11 @@ nav:
         route: about_us_de
 
 payment:
-    email-subject: Ihre Bestellung bei FABINI
+    email-subject: Ihre Bestellung bei REZOUANI
     email-msg-part1: Hallo %buyer_name%,
     email-msg-part2: Vielen Dank für Ihren Kauf!
     email-msg-part3: Bestellungsübersicht:
     email-msg-part4: Lieferadresse:
-    email-msg-part5: Ihr FABINI-Team
+    email-msg-part5: Ihr REZOUANI-Team
 
-copyright: Copyright FABINI-REZ - Alle Rechte vorbehalten
+copyright: Copyright REZOUANI.com - Alle Rechte vorbehalten

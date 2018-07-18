@@ -18,7 +18,7 @@ fos_user:
             enabled: true
             from_email:
                 address: mimoberlino@gmail.com
-                sender_name: Fabini
+                sender_name: Rezouani
 
     profile:
         form:

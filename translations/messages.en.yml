@@ -1,13 +1,114 @@
 label:
     more: More
     welcome:
-        title: Welcome to FABINI
-        sub-title: Leder aus Leidenschafft!
-        desc: bla bla bla
-    top-products: Top Produkte
-    details: Details anzeigen
+        title: Welcome to REZOUANI
+        sub-title: Leather, summer, winter and sport articles in Berlin
+        desc: |
+            bla bla bla
+    top-products: Top Products
+    details: Show details
+    price: Price
+    color: Color
+    size: Size
+    quantity: Quantity
+    colors-set:
+        white: White
+        black: Block
+    submit: Send
+    edit: Edit
+    delete: Delete
+    back: Back
+    show: Show
+    cancel: Cancel
+    search: Search
+    logout: Logout
+    login: Login
+    title: Title
+    price-unit: Price
+    price-total: Total price
+    total-excl-tax: Sum
+    total-incl-tax: Total (incl. VAT)
+    vat: VAT
+    product-number: Product number
+    product-name: Product name
+    colors-available: Colors
+    sizes-available: Sizes
+    about-us: About us
+    favorite-products: Famous products
+
+
+hello: Hello
+
+
+red: Red
+white: White
+yellow: Yellow
+gray: Gray
+silver: Silver
+burlywood: Natur brown
+brown: Brown
+maroon: Dark brown
+darkred: Bordeaux
+black: Schwarz
+green: Grün
+lightgreen: Hellgrün
+blue: Blau
+lightblue: Hellblau
+darkblue: Dunkelblau
+pink: Rose
+violet: Lila
+purple: Violett
+fuchsia: Fuchsia
+beige: Beige
+gold: Gold
+orange: Orange
+
+
+
+routes:
+    about-us: about-us
+
+msg:
+    confirm_delete: Confirm delete?
+    no_products_in_category: Curently no articles in this category
+    thanks-for-order: Thank you for your order
+    email-sent: An email has been sent to %buyer_email% with the complete order overview.
+    error-to-cart-params: Error! Please correct your choice (Color, size, quantity...)
+
+
+user:
+    my_profile: Mein Profil
+    name: Vor- und Nachname
+    email: Email
+    address_shipping: Lieferadresse
+    address_billing: Rechnungadresse
+    password_edit: Passwort ändern
+    address_register: Addresse, Straße und Hausnummer
+    zip: Postleizahl
+    city: Stadt
+    country: Land
+    my_orderings: My transactions
+
+cart:
+    to-cart: Add to Cart
+    my-cart: Your Cart
+    pay-now: Pay with PayPal now!
+    continue-shopping: Continue shopping
+    empty: Your Cart is empty
+    order-overview: Order overview
+    paypal-shipping-address: PayPal Shipping address
 
 nav:
     main:
-        label: About us
-        route: about_us_en
+        label: Über uns
+        route: about_us_de
+
+payment:
+    email-subject: Your order by REZOUANI
+    email-msg-part1: Hi %buyer_name%,
+    email-msg-part2: Thank you for your order!
+    email-msg-part3: Order overview:
+    email-msg-part4: Shipping address:
+    email-msg-part5: Your REZOUANI-Team
+
+copyright: Copyright REZOUANI.com - All Rights reserved

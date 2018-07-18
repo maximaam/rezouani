@@ -215,12 +215,12 @@ class CartController extends Controller
         );
 
         $message = (new \Swift_Message($translator->trans('payment.email-subject')))
-            ->setFrom($this->container->getParameter('mailer_from'), 'FABINI-REZ.com')
+            ->setFrom($this->container->getParameter('mailer_from'), 'REZOUANI.com')
             ->setTo($payment->getBuyerEmail())
             ->setBody($body, 'text/html');
 
-        $messageAdmin = (new \Swift_Message('Verkauf bei FABINI-REZ.com - Kopie von EMail'))
-            ->setFrom($this->container->getParameter('mailer_from'), 'FABINI-REZ.com')
+        $messageAdmin = (new \Swift_Message('Verkauf bei Rezouani.com - Kopie von EMail'))
+            ->setFrom($this->container->getParameter('mailer_from'), 'Rezouani.com')
             ->setTo($this->container->getParameter('mailer_sold_item'))
             ->setBody($body, 'text/html');
 
