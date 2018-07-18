@@ -1,6 +1,6 @@
 sonata_admin:
     title: 'Admin'
-    title_logo: '/images/rezouani-logo-small.jpg'
+    title_logo: '/images/logo-rezouani.jpg'
     show_mosaic_button: false
 
     #options:
