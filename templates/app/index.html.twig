@@ -30,23 +30,10 @@
     </div>
 
     <div class="container">
-    <div class="row">
-        <h2>{{ 'label.favorite-products'|trans }}</h2>
-    </div>
-
         <div class="row">
-            {% for item in leather %}
-                {% include 'app/partials/item.html.twig' with {product: item} %}
-            {% endfor %}
-            {% for item in leather %}
-                {% include 'app/partials/item.html.twig' with {product: item} %}
-            {% endfor %}
-            {% for item in leather %}
-                {% include 'app/partials/item.html.twig' with {product: item} %}
-            {% endfor %}
-            {% for item in leather %}
-                {% include 'app/partials/item.html.twig' with {product: item} %}
-            {% endfor %}
+            <h2>{{ 'label.favorite-products'|trans }}</h2>
+        </div>
+        <div class="row">
             {% for item in leather %}
                 {% include 'app/partials/item.html.twig' with {product: item} %}
             {% endfor %}
