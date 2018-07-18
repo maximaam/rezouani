@@ -26,7 +26,7 @@
             <nav class="navbar fixed-top navbar-expand-lg navbar-dark">
                 <div class="container">
                     <a class="navbar-brand" href="/">
-                        <img src="{{ asset('images/fabini-logo-small.jpg') }}" alt="Fabini Logo" width="100">
+                        <img src="{{ asset('images/logo-rezouani.jpg') }}" alt="Rezouani Logo" title="Rezouani import/export" width="50">
                     </a>
 
                     <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
@@ -58,8 +58,16 @@
                             -->
 
                             <ul class="languages">
-                                <li><a href="/de" class="{{ app.request.locale == 'de' ? 'current' }}">Deutsch</a></li>
-                                <li><a href="/en" class="{{ app.request.locale == 'en' ? 'current' }}">English</a></li>
+                                <li>
+                                    <a href="/de" class="{{ app.request.locale == 'de' ? 'current' }}">
+                                        Deutsch
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="/en" class="{{ app.request.locale == 'en' ? 'current' }}">
+                                        English
+                                    </a>
+                                </li>
                             </ul>
                         </div>
                         <!--

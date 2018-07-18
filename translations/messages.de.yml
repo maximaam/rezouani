@@ -1,11 +1,10 @@
 label:
     more: Mehr
     welcome:
-        title: Willkommen bei FABINI
-        sub-title: Leder aus Leidenschafft!
+        title: Willkommen bei REZOUANI!
+        sub-title: Lederwaren, Saisonwaren & Geschenkartikel in Berlin.
         desc: |
-            Fabini ist ein Unternehmen mit sitzt in Berlin, was sich besonders in Leder spazielisiert hat.
-            Ob Damenportemonnaies, Kellnerportemonnaies, Schlüsseltaschen...
+            bla bla bla
     top-products: Top Produkte
     details: Details anzeigen
     price: Preis
@@ -34,6 +33,8 @@ label:
     product-name: Produkt-Name
     colors-available: Farben
     sizes-available: Größen
+    about-us: Über uns
+    favorite-products: Beliebste Produkte
 
 
 hello: Hallo

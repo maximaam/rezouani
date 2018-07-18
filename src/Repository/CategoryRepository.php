@@ -108,4 +108,24 @@ class CategoryRepository extends ServiceEntityRepository
             return $cat->getId();
         }, iterator_to_array($category->getChildren()));
     }
+
+
+    /**
+     * @param int $limit
+     * @return array
+     */
+
+    /**
+     * @param int $limit
+     * @return \Doctrine\ORM\Query
+     */
+    public function getStartPageCategories(int $limit)
+    {
+        return $this->createQueryBuilder('c')
+            ->where('c.parent IS NOT NULL')
+            ->setMaxResults($limit)
+            ->getQuery()
+            ->getResult()
+            ;
+    }
 }

@@ -26,10 +26,17 @@ class IndexController extends Controller
      */
     public function index()
     {
-        $leather = $this->getDoctrine()->getRepository(Product::class)->findBy(['topItem' => true]);
+        $leather = $this->getDoctrine()
+            ->getRepository(Product::class)
+            ->findBy(['topItem' => true]);
+
+        $categories = $this->getDoctrine()
+            ->getRepository(Category::class)
+            ->getStartPageCategories(3);
 
         return $this->render('app/index.html.twig', [
-            'leather' => $leather
+            'leather' => $leather,
+            'categories'    => $categories
         ]);
     }
 

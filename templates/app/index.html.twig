@@ -1,22 +1,67 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <div class="jumbotron">
+
+    <div class="start-page">
+
         <div class="container">
-            <h1 class="display-4">{{ 'label.welcome.title'|trans }}</h1>
-            <h2>{{ 'label.welcome.sub-title'|trans }}</h2>
-            <p>{{ 'label.welcome.desc'|trans|nl2br }}</p>
-            <p><a class="btn btn-primary btn-lg" href="{{ path('app_index_page', {slug: 'routes.about-us'|trans}) }}" role="button">{{ 'label.more'|trans }} »</a></p>
+            <div class="intro">
+                <h1 class="display-4">{{ 'label.welcome.title'|trans }}</h1>
+                <h2>{{ 'label.welcome.sub-title'|trans }}</h2>
+                <p><a href="{{ path('app_index_page', {slug: 'routes.about-us'|trans}) }}">{{ 'label.about-us'|trans }} »</a></p>
+            </div>
+        </div>
+
+        <div class="container categories">
+            <div class="row">
+                {% for category in categories %}
+
+                    <div class="col-lg-4">
+                        <a href="{{ path('app_index_catalogue', {catAlias: category.parent.alias(app.request.locale),subCatAlias: category.alias(app.request.locale),itemId: null}) }}" >
+                            <div class="card category">
+                            {{ category.name(app.request.locale) }}
+                            </div>
+                        </a>
+                    </div>
+
+                {% endfor %}
+            </div>
         </div>
     </div>
 
     <div class="container">
-        <div class="row">
+    <div class="row">
+        <h2>{{ 'label.favorite-products'|trans }}</h2>
+    </div>
 
+        <div class="row">
             {% for item in leather %}
                 {% include 'app/partials/item.html.twig' with {product: item} %}
             {% endfor %}
-
+            {% for item in leather %}
+                {% include 'app/partials/item.html.twig' with {product: item} %}
+            {% endfor %}
+            {% for item in leather %}
+                {% include 'app/partials/item.html.twig' with {product: item} %}
+            {% endfor %}
+            {% for item in leather %}
+                {% include 'app/partials/item.html.twig' with {product: item} %}
+            {% endfor %}
+            {% for item in leather %}
+                {% include 'app/partials/item.html.twig' with {product: item} %}
+            {% endfor %}
         </div>
     </div>
+
+
+    <div class="container start-seo">
+        <div class="row">
+            <h2>{{ 'label.about-us'|trans }}</h2>
+        </div>
+        <div class="row">
+            <p>{{ 'label.welcome.desc'|trans|nl2br }}</p>
+        </div>
+    </div>
+
+
 {% endblock %}

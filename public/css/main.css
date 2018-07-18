@@ -6,24 +6,28 @@ body {
 
 main {
     min-height: 80rem;
-    margin-top: 80px;
     padding: 20px 0;
 }
 
 header.main-header {
-    background: #333;
+    background: #fcb00a;
+    height: 65px;
 }
 
 h1 {
     font-size: 1.7rem;
 }
 
-h2 {
-    font-size: 1.2rem;
+a {
+    color: #f56f22;
+}
+
+a:hover {
+    color: #f56f22;
 }
 
 footer.main-footer {
-    background: #284a49;
+    background: #f56f22;
     padding: 15px 0;
 }
 .fa-facebook-official,
@@ -41,7 +45,11 @@ footer.main-footer {
 }
 
 .navbar {
-    background: #333;
+    background: #fcb00a;
+}
+
+.navbar-brand img {
+    border-radius: .3rem;
 }
 
 .navbar-nav .nav-item {
@@ -55,26 +63,23 @@ footer.main-footer {
     -webkit-transition: all .2s ease-in-out;
     -o-transition: all .2s ease-in-out;
     transition: all .2s ease-in-out;
-    padding: .75rem 1.5rem;
-    background: rgba(105,164,163,.2);
 }
 .navbar-nav a.nav-link:hover,
 .nav-item.current a.nav-link {
-    background: rgba(105,164,163,.8);
+    background: rgba(254,111,34,.3);
 }
 .navbar .user-cart > a {
     margin-left: 10px;
     position: relative;
-    background: #333;
     padding: 2px 5px;
-    border-radius: 4px;
+    border-radius: .3rem;
     width: 50px;
     height: 44px;
     text-align: center;
 }
 
 .navbar .user-cart > a.logged i {
-    color: #CC9A00;
+    color: #f56f22;
 }
 
 .navbar .user-cart a span {
@@ -104,7 +109,7 @@ footer.main-footer {
     border-left: 1px solid #fff;
 }
 .languages li:first-child {
-    border-bottom: 1px solid #999;
+    border-bottom: 1px solid #fff;
 }
 .languages li:last-child {
 }
@@ -119,16 +124,50 @@ footer.main-footer {
 }
 
 
-.jumbotron {
-    background: url("../images/bg-multi.jpg");
-    color: #fff;
-    min-height: 300px;
-    background-size: cover;
-    border-radius: 0;
-    margin-top: -30px !important;
+.start-page {
+    background: url("../images/bg.jpg") center top no-repeat;
+    margin: -20px 0 50px 0;
+    padding: 50px 0;
+    object-fit: cover;
 }
-.jumbotron h1 {
-    text-shadow: 1px 1px 2px #333;
+.start-page .intro {
+    background: rgba(255,255,255,.8);
+    width: 100%;
+    padding: 20px;
+    border-radius: .5rem;
+    box-shadow: 0 0 2px #999;
+    margin-bottom: 100px;
+}
+
+.start-page .categories a {
+    color: #333;
+}
+.start-page .categories a:hover {
+    text-decoration: none;
+}
+
+.start-page .category {
+    background: rgba(255,255,255,.8);
+    height: 360px;
+    border-radius: 100%;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 360px;
+    font-size: 2rem;
+    box-shadow: 0 0 2px #999;
+}
+
+.start-page .category:hover {
+    background: rgba(254,111,34,.3);
+    color: #fff;
+}
+
+.start-seo {
+    background: #eee;
+    padding: 20px;
+}
+
+.start-page h1 {
     font-family: 'Titillium Web', sans-serif;
     letter-spacing: 3px;
     text-transform: uppercase;
@@ -138,11 +177,11 @@ footer.main-footer {
 }
 
 .btn-primary {
-    background: #69A4A3;
+    background: #f56f22;
     border: none;
 }
 .btn-primary:hover {
-    background: #93cfce;
+    background: #fcb00a;
 }
 
 
@@ -191,7 +230,7 @@ footer.main-footer {
 }
 .navbar-subcategory li a:hover,
 .navbar-subcategory li.current a {
-    color: #69A4A3;
+    color: #f56f22;
 }
 
 .cat-desc {
@@ -229,7 +268,7 @@ footer.main-footer {
 }
 
 .btn-paypal {
-    background: #faa628 url(../images/paypal-icon.png) no-repeat;
+    background: #fcb00a url(../images/paypal-icon.png) no-repeat;
     height: 54px;
     padding-left: 60px;
     color: #fff;
@@ -297,10 +336,6 @@ footer.main-footer {
 /* Smartphones (portrait and landscape) ----------- */
 
 @media only screen and (min-width : 320px) and (max-width : 480px) {
-
-    .jumbotron h1 {
-        font-size: 2.5rem;
-    }
     .navbar-nav a.nav-link {
         background: transparent;
         border-bottom: 1px solid #ccc;
