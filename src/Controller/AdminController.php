@@ -23,9 +23,8 @@ use App\Entity\Product;
  */
 class AdminController extends SonataCRUDController
 {
-
     /**
-     * @param int|null|string $id
+     * @param int $id
      * @return RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
     public function deleteAction($id)
@@ -41,6 +40,11 @@ class AdminController extends SonataCRUDController
 
             if (!empty($images)) {
                 foreach ($images as $image) {
+
+                    if (empty($image)) {
+                        continue;
+                    }
+
                     $file = $this->getParameter('product_images_dir') . DIRECTORY_SEPARATOR . $image;
                     if (file_exists($file)) {
                         unlink($file);

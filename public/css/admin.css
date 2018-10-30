@@ -6,6 +6,9 @@ body {
 textarea {
     height: 200px !important;
 }
+textarea.large {
+    height: 500px !important;
+}
 
 .uploaded-images-container {
     overflow: hidden;

@@ -3,9 +3,9 @@
 {% block body %}
     <div class="container">
         <div class="row">
-            <div class="col-12">
+            <div class="col-12 admin-page">
                 <h1>{{ page.title(app.request.locale) }}</h1>
-                <p>{{ page.description(app.request.locale)|raw }}</p>
+                {{ page.description(app.request.locale)|raw }}
             </div>
         </div>
     </div>

@@ -28,10 +28,24 @@ class PageAdmin extends AbstractAdmin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
+            ->with('Deutsch', ['class' => 'col-md-6'])
             ->add('titleDe')
+            ->add('descriptionDe', null, [
+                'attr'  => [
+                    'class'  => 'large'
+                ]
+            ])
+            ->end()
+
+            ->with('English', ['class' => 'col-md-6'])
             ->add('titleEn')
-            ->add('descriptionDe')
-            ->add('descriptionEn');
+            ->add('descriptionEn', null, [
+                'attr'  => [
+                    'class'  => 'large'
+                ]
+            ])
+            ->end()
+        ;
     }
 
     /**
@@ -62,8 +76,6 @@ class PageAdmin extends AbstractAdmin
             ])
             ->add('titleDe')
             ->add('titleEn')
-            ->add('descriptionDe')
-            ->add('descriptionEn')
             ->add('_action', null, [
                 'actions' => [
                     'show' => [],

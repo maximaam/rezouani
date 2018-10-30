@@ -13,6 +13,9 @@ parameters:
     mailer_from: 'no-reply@sparheld.de'
     mailer_sold_item: 'mimoberlino@gmail.com'
 
+    site_name: 'Rezouani'
+    site_host: 'rezouani.com'
+
 services:
     # default configuration for services in *this* file
     _defaults:

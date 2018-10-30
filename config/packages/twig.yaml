@@ -4,5 +4,5 @@ twig:
     strict_variables: '%kernel.debug%'
     form_themes: ['bootstrap_4_layout.html.twig']
     globals:
-        app_name: 'Rezouani'
-        app_host: 'rezouani.com'
+        site_name: '%site_name%'
+        site_host: '%site_host%'
