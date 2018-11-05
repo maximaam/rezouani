@@ -65,7 +65,7 @@
                             {% if  product.sizes|length > 0 %}
                                 <li>{{ 'label.sizes-available'|trans }}: {{ product.sizes|join(', ') }}</li>
                             {% endif %}
-                            <li>{{ 'label.price'|trans }}: EUR {{ product.price|number_format(2, ',', '.') }}</li>
+                            <li>{{ 'label.price'|trans }}: {{ product.price|number_format(2, ',', '.') }} <i class="fa fa-euro"></i></li>
                         </ul>
                     </div>
 
@@ -112,7 +112,7 @@
 
                                     <div class="form-group">
                                         <button type="submit" class="btn btn-primary">
-                                            <i class="fa fa-shopping-cart"></i>
+                                            <i class="fa fa-shopping-basket"></i>
                                             {{ 'cart.to-cart'|trans }}
                                         </button>
                                     </div>

@@ -40,11 +40,6 @@
                         <div class="user-cart form-inline mt-2 mt-md-0">
                             {% set cartItems = app.session.get('cart')|length %}
 
-                            <a href="{{ path('app_cart_index') }}" class="cart" title="{{ 'cart.my-cart'|trans }} {{ cartItems }}">
-                                <span {{ cartItems > 0 ? 'class="active"'}}>{{ cartItems }}</span>
-                                <i class="fa fa-shopping-cart"></i>
-                            </a>
-
                             <!--
                             {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
                                 <a href="{{ path('fos_user_profile_show') }}" title="{{ app.user.username }}" class="logged">
@@ -59,16 +54,21 @@
 
                             <ul class="languages">
                                 <li>
-                                    <a href="/de" class="{{ app.request.locale == 'de' ? 'current' }}">
-                                        Deutsch
+                                    <a href="/de" class="{{ app.request.locale == 'de' ? 'current' }}" title="Deutsch">
+                                        DE
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="/en" class="{{ app.request.locale == 'en' ? 'current' }}">
-                                        English
+                                    <a href="/en" class="{{ app.request.locale == 'en' ? 'current' }}" title="English">
+                                        EN
                                     </a>
                                 </li>
                             </ul>
+
+                            <a href="{{ path('app_cart_index') }}" class="cart" title="{{ 'cart.my-cart'|trans }} {{ cartItems }}">
+                                <span {{ cartItems > 0 ? 'class="active"'}}>{{ cartItems }}</span>
+                                <i class="fa fa-shopping-basket"></i>
+                            </a>
                         </div>
                         <!--
                         <form class="form-inline mt-2 mt-md-0">

@@ -8,15 +8,21 @@
     <a href="{{ itemUrl }}" class="a-single-item">
         <div class="card single-item">
             {% set imgSeparator = constant('App\\Entity\\Product::IMG_SEPARATOR') %}
-            <img class="card-img-top" src="{{ asset('/images/products/' ~ product.images|trim(imgSeparator)|split(imgSeparator)|first ) }}">
+
+            <div class="img-container{{ isHomepage is defined ? ' homepage' }}">
+                <img src="{{ asset('/images/products/' ~ product.images|trim(imgSeparator)|split(imgSeparator)|first ) }}">
+            </div>
 
             <div class="card-body">
                 <h2>{{ product.title(app.request.locale) }}</h2>
                 <p class="card-text">
-                    {{ 'label.price'|trans }}: EUR {{ product.price|number_format(2, ',', '.') }}
+                    {{ 'label.price'|trans }}: {{ product.price|number_format(2, ',', '.') }} <i class="fa fa-euro"></i>
                 </p>
-                <p class="card-text">
-                    <span class="btn btn-primary">{{ 'label.more'|trans }}</span>
+                <p class="card-text pull-right">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-plus-circle"></i>
+                        {{ 'label.show-details'|trans }}
+                    </span>
                 </p>
             </div>
         </div>

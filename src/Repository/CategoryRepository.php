@@ -6,6 +6,10 @@ use App\Entity\Category;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
+/**
+ * Class CategoryRepository
+ * @package App\Repository
+ */
 class CategoryRepository extends ServiceEntityRepository
 {
     public function __construct(RegistryInterface $registry)
@@ -39,7 +43,7 @@ class CategoryRepository extends ServiceEntityRepository
                 ->setParameter('parentId', $category->getId());
         }
 
-        $qb->orderBy('c.id', 'ASC');
+        $qb->orderBy('c.position', 'ASC');
 
         return $qb;
     }
@@ -51,7 +55,7 @@ class CategoryRepository extends ServiceEntityRepository
      */
     public static function getRelatedCategories(Category $category): array
     {
-        return array_merge(
+        return \array_merge(
             self::getAllChildren($category),
             self::getAllParents($category)
         );
@@ -81,7 +85,7 @@ class CategoryRepository extends ServiceEntityRepository
      * @param Category $category
      * @return array
      */
-    private static function getAllParents(Category $category)
+    private static function getAllParents(Category $category): array
     {
         static $categories = [];
 
@@ -104,16 +108,10 @@ class CategoryRepository extends ServiceEntityRepository
     public static function getChildrenIds(Category $category): array
     {
         /** @var Category $cat */
-        return array_map(function ($cat) {
+        return \array_map(function ($cat) {
             return $cat->getId();
-        }, iterator_to_array($category->getChildren()));
+        }, \iterator_to_array($category->getChildren()));
     }
-
-
-    /**
-     * @param int $limit
-     * @return array
-     */
 
     /**
      * @param int $limit

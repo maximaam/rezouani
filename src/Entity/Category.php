@@ -3,7 +3,6 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Doctrine\ORM\Mapping\Index;
 use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -11,8 +10,9 @@ use App\Utils\StringHelper;
 
 /**
  * @ORM\Table(indexes={
- *     @Index(name="idx_alias_de", columns={"alias_de"}),
- *     @Index(name="idx_alias_en", columns={"alias_en"}),
+ *     @ORM\Index(name="idx_alias_de", columns={"alias_de"}),
+ *     @ORM\Index(name="idx_alias_en", columns={"alias_en"}),
+ *     @ORM\Index(name="idx_position", columns={"position"}),
  * })
  * @ORM\Entity(repositoryClass="App\Repository\CategoryRepository")
  * @ORM\HasLifecycleCallbacks()
@@ -77,18 +77,23 @@ class Category
     /**
      * @var string
      *
-     * @Assert\NotBlank()
-     * @ORM\Column(name="description_de", type="text")
+     * @ORM\Column(type="text", nullable=true)
      */
     private $descriptionDe;
 
     /**
      * @var string
      *
-     * @Assert\NotBlank()
-     * @ORM\Column(name="description_en", type="text")
+     * @ORM\Column(type="text", nullable=true)
      */
     private $descriptionEn;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(type="integer")
+     */
+    private $position;
 
     /**
      * @var category
@@ -260,17 +265,17 @@ class Category
     }
 
     /**
-     * @param string $name
-     * @return $this
+     * @param null|string $name
+     * @return Category
      */
-    public function setDescriptionDe(string $name): self
+    public function setDescriptionDe(?string $name): self
     {
         $this->descriptionDe = $name;
         return $this;
     }
 
     /**
-     * @return string
+     * @return null|string
      */
     public function getDescriptionDe(): ?string
     {
@@ -278,21 +283,40 @@ class Category
     }
 
     /**
-     * @param string $name
-     * @return $this
+     * @param null|string $name
+     * @return Category
      */
-    public function setDescriptionEn(string $name): self
+    public function setDescriptionEn(?string $name): self
     {
         $this->descriptionEn = $name;
         return $this;
     }
 
     /**
-     * @return string
+     * @return null|string
      */
     public function getDescriptionEn(): ?string
     {
         return $this->descriptionEn;
+    }
+
+    /**
+     * @return int
+     */
+    public function getPosition(): ?int
+    {
+        return $this->position;
+    }
+
+    /**
+     * @param int $order
+     * @return Category
+     */
+    public function setPosition(int $order): self
+    {
+        $this->position = $order;
+
+        return $this;
     }
 
     /**

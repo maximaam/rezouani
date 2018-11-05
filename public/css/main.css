@@ -1,7 +1,7 @@
 body {
     background: #fff;
     font-family: Arial, Helvetica, sans-serif;
-    color: #333;
+    color: #000;
 }
 
 main {
@@ -15,8 +15,13 @@ header.main-header {
 }
 
 h1 {
-    font-size: 1.7rem;
-    margin-bottom: 2rem;
+    font-size: 1.7rem !important;
+    margin-bottom: 1rem;
+}
+
+h2 {
+    font-size: 1.2rem !important;
+    margin-bottom: 1rem;
 }
 
 a {
@@ -86,14 +91,15 @@ footer.main-footer {
 
 .navbar .user-cart a span {
     position: absolute;
-    top: -5px;
-    left: 0;
+    top: 10px;
+    left: 38px;
     font-size: 14px;
     background: #999;
-    width: 22px;
-    height: 22px;
+    width: 20px;
+    height: 20px;
     border-radius: 50%;
     color: #fff;
+    box-shadow: 0 0 0 3px #fff;
 }
 
 .navbar .user-cart a span.active {
@@ -105,15 +111,13 @@ footer.main-footer {
 }
 
 .languages {
-    margin: 0 0 0 10px;
+    margin: 0;
     padding: 0 10px;
     list-style: none;
-    border-left: 1px solid #fff;
+    border-right: 1px solid #fff;
 }
 .languages li:first-child {
     border-bottom: 1px solid #fff;
-}
-.languages li:last-child {
 }
 
 .languages a {
@@ -133,11 +137,10 @@ footer.main-footer {
     object-fit: cover;
 }
 .start-page .intro {
-    background: rgba(255,255,255,.8);
+    background: rgba(255,255,255,.9);
     width: 100%;
     padding: 20px;
     border-radius: .5rem;
-    box-shadow: 0 0 2px #999;
     margin-bottom: 100px;
 }
 
@@ -201,12 +204,23 @@ footer.main-footer {
     font-size: 1rem;
     font-weight: 600;
     min-height: 50px;
+    border-bottom: 1px solid #999;
+    font-size: 1rem !important;
 }
 
-.card-img-top {
-    width: 100%;
+.img-container {
     height: 160px;
     margin-bottom: 10px;
+}
+
+.img-container.homepage {
+    height: 200px;
+}
+.img-container img {
+    max-width: 100%;
+    max-height: 100%;
+    margin: auto;
+    display: block;
 }
 
 .product-details {
@@ -304,9 +318,10 @@ footer.main-footer {
 
 .product-cart-form {
     padding: 10px;
-    background: #ccc;
-    float: right;
     margin-top: 20px;
+    float: right;
+    background: #000;
+    color: #fff;
 }
 .product-cart-form .form-group {
     margin-left: 10px;
@@ -314,7 +329,7 @@ footer.main-footer {
 
 .carousel-control-next,
 .carousel-control-prev {
-    background: #ccc;
+    background: #000;
     width: 10%;
 }
 
@@ -336,9 +351,6 @@ img.page-img {
     */
 }
 @media only screen and (min-width : 320px) and (max-width : 1024px) {
-    .card-img-top {
-        height: auto;
-    }
 
 }
 

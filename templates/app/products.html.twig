@@ -10,13 +10,18 @@
                         </div>
                     </div>
 
-                    {{ knp_menu_render('subCategory') }}
+                    {% set subCatMenu = knp_menu_get('subCategory') %}
+
+                    {{ knp_menu_render(subCatMenu) }}
 
                     <blockquote class="cat-desc">
+
+                        {% if category.parent == null %}
                         <i class="fa fa-quote-right"></i>
                         <p>
-                            {{ category.description(app.request.locale)|raw }}
+                            {{ category.description(app.request.locale)|nl2br }}
                         </p>
+                        {% endif %}
 
                     </blockquote>
                 </div>
@@ -24,12 +29,12 @@
                 <div class="col-md-9">
 
                     {% if products|length == 0 %}
+
                         <div class="alert alert-warning">
                             {{ 'msg.no_products_in_category'|trans }}
                         </div>
+
                     {% else %}
-
-
 
                     <div class="row">
                         {% for product in products %}

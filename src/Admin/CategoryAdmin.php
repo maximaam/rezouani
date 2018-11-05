@@ -49,20 +49,15 @@ class CategoryAdmin extends AbstractAdmin
                 'label' => 'Category name english'
             ])
             ->add('descriptionDe', null, [
-                'label' => 'Category description german'
+                'label' => 'Category description german',
+                'required'  => false,
             ])
             ->add('descriptionEn', null, [
-                'label' => 'Category description english'
+                'label' => 'Category description english',
+                'required'  => false,
             ])
+            ->add('position')
         ;
-    }
-
-    /**
-     * @param ErrorElement $errorElement
-     * @param $object
-     */
-    public function validate(ErrorElement $errorElement, $object)
-    {
     }
 
     /**
@@ -93,6 +88,7 @@ class CategoryAdmin extends AbstractAdmin
                 'label' => 'Created'
             ])
             ->add('nameWithSubCat')
+            ->add('position')
 
             ->add('_action', null, [
                 'actions' => [

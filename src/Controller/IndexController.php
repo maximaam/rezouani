@@ -36,7 +36,7 @@ class IndexController extends Controller
 
         return $this->render('app/index.html.twig', [
             'leather' => $leather,
-            'categories'    => $categories
+            'categories'    => $categories,
         ]);
     }
 
