@@ -29,8 +29,8 @@ label:
     total-excl-tax: Summe
     total-incl-tax: Zwischensumme (inlc. MwSt.)
     vat: MwSt.
-    product-number: Produkt-Nummer
-    product-name: Produkt-Name
+    product-number: Artikelnummer
+    product-name: Artikelname
     colors-available: Farben
     sizes-available: Größen
     about-us: Über uns

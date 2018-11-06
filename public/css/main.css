@@ -25,15 +25,15 @@ h2 {
 }
 
 a {
-    color: #f56f22;
+    color: #75af34;
 }
 
 a:hover {
-    color: #f56f22;
+    color: #90cd37;
 }
 
 footer.main-footer {
-    background: #f56f22;
+    background: #75af34;
     padding: 15px 0;
 }
 .fa-facebook-official,
@@ -80,7 +80,7 @@ footer.main-footer {
     position: relative;
     padding: 2px 5px;
     border-radius: .3rem;
-    width: 50px;
+    width: 44px;
     height: 44px;
     text-align: center;
 }
@@ -94,16 +94,16 @@ footer.main-footer {
     top: 10px;
     left: 38px;
     font-size: 14px;
-    background: #999;
+    background: #fff;
     width: 20px;
     height: 20px;
     border-radius: 50%;
-    color: #fff;
     box-shadow: 0 0 0 3px #fff;
 }
 
 .navbar .user-cart a span.active {
     background: red;
+    color: #fff;
 }
 .navbar .user-cart a i {
     color: #fff;
@@ -112,7 +112,7 @@ footer.main-footer {
 
 .languages {
     margin: 0;
-    padding: 0 10px;
+    padding: 0 15px;
     list-style: none;
     border-right: 1px solid #fff;
 }
@@ -182,11 +182,11 @@ footer.main-footer {
 }
 
 .btn-primary {
-    background: #f56f22;
+    background: #75af34;
     border: none;
 }
 .btn-primary:hover {
-    background: #fcb00a;
+    background: #90cd37;
 }
 
 
@@ -246,7 +246,7 @@ footer.main-footer {
 }
 .navbar-subcategory li a:hover,
 .navbar-subcategory li.current a {
-    color: #f56f22;
+    color: #75af34;
 }
 
 .cat-desc {
