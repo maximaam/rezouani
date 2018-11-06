@@ -53,22 +53,23 @@ class AjaxController extends Controller
         $productId = (int)$request->query->get('pk');
         $response = 'error';
 
-        if ($filename) {
+        if ($filename && $productId > 0) { //Update form - product exists
 
-            if ($productId > 0) { //Update form - product exists
+            $image = $uploader->getTargetDirectory() . DIRECTORY_SEPARATOR . $filename;
+
+            if (\file_exists($image)) {
+
                 $em = $this->getDoctrine()->getManager();
 
                 /** @var Product $product */
                 $product = $em->getRepository(Product::class)->find($productId);
-                $images = str_replace($filename . Product::IMG_SEPARATOR, '', $product->getImages());
+                $images = \str_replace($filename . Product::IMG_SEPARATOR, '', $product->getImages());
                 $product->setImages($images);
 
                 $em->flush();
-            }
 
-            unlink($uploader->getTargetDirectory() . DIRECTORY_SEPARATOR . $filename);
+                \unlink($uploader->getTargetDirectory() . DIRECTORY_SEPARATOR . $filename);
 
-            if (0 === count(error_get_last())) {
                 $response = 'success';
             }
         }
