@@ -5,22 +5,44 @@
 {% block body %}
     <div class="container product-view">
         <div class="row">
-            <div class="col-lg-12">
 
-                {% if product|length == 0 %}
+            {% if product|length == 0 %}
 
-                    <div class="alert alert-info">
-                        {{ 'msg.no_products_in_category'|trans }}
+                <div class="alert alert-info">
+                    {{ 'msg.no_products_in_category'|trans }}
+                </div>
+
+            {% else %}
+
+                <div class="col-md-3">
+                    <div class="row">
+                        <div class="container">
+                            <h1>{{ product.category.name(app.request.locale) }}</h1>
+                        </div>
                     </div>
 
-                {% else %}
+                    {% set subCatMenu = knp_menu_get('subCategory') %}
 
+                    {{ knp_menu_render(subCatMenu) }}
+
+                    <blockquote class="cat-desc">
+
+                        {% if product.category.parent == null %}
+                            <i class="fa fa-quote-right"></i>
+                            <p>
+                                {{ product.category.description(app.request.locale)|nl2br }}
+                            </p>
+                        {% endif %}
+
+                    </blockquote>
+                </div>
+
+                <div class="col-md-9">
                     {% for message in app.flashes('error') %}
                         <div class="alert alert-danger">
                             {{ message }}
                         </div>
                     {% endfor %}
-
 
                     <h1>{{ product.title(locale)}}</h1>
                     <div id="carousel-product" class="carousel slide" data-ride="carousel">
@@ -113,8 +135,9 @@
                             </div>
                         </form>
                     </div>
-                {% endif %}
+                </div>
             </div>
-        </div>
+
+        {% endif %}
     </div>
 {% endblock %}
