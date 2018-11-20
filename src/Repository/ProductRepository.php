@@ -6,6 +6,7 @@ use App\Entity\Product;
 use App\Entity\Category;
 
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\QueryBuilder;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
 class ProductRepository extends ServiceEntityRepository
@@ -17,9 +18,9 @@ class ProductRepository extends ServiceEntityRepository
 
     /**
      * @param array $categories
-     * @return mixed
+     * @return QueryBuilder
      */
-    public function fetchByCategories(array $categories)
+    public function fetchByCategories(array $categories): QueryBuilder
     {
         $qb = $this ->createQueryBuilder('p')
             ->leftJoin('p.category', 'c');
@@ -30,7 +31,7 @@ class ProductRepository extends ServiceEntityRepository
         $qb->where('c.id IN(:categories)')
             ->setParameter('categories', $categories);
 
-        return $qb->getQuery()->getResult();
+        return $qb;
     }
 
     /**

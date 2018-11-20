@@ -28,15 +28,17 @@ class IndexController extends Controller
     {
         $leather = $this->getDoctrine()
             ->getRepository(Product::class)
-            ->findBy(['topItem' => true]);
+            ->findBy(['topItem' => true], null, 12);
 
+        /*
         $categories = $this->getDoctrine()
             ->getRepository(Category::class)
             ->getStartPageCategories(3);
+        */
 
         return $this->render('app/index.html.twig', [
             'leather' => $leather,
-            'categories'    => $categories,
+            //'categories'    => $categories,
         ]);
     }
 
@@ -113,6 +115,7 @@ class IndexController extends Controller
         $catRepo = $this->getDoctrine()->getRepository(Category::class);
         $productRepo = $this->getDoctrine()->getRepository(Product::class);
 
+        //all, no item id
         if (null === $itemId = $request->get('itemId')) {
 
             $alias = 'alias' . ucfirst($request->getLocale());
@@ -122,7 +125,7 @@ class IndexController extends Controller
                 /** @var Category $category */
                 $category = $catRepo->findOneBy([$alias => $request->get('catAlias')]);
                 $catIds = CategoryRepository::getChildrenIds($category);
-                $products = $productRepo->fetchByCategories($catIds);
+                $products = $productRepo->fetchByCategories($catIds)->setMaxResults(12)->getQuery()->getResult();
             } else {
 
                 $category = $catRepo->findOneBy([$alias => $subCatAlias]);
