@@ -78,7 +78,7 @@ class IndexController extends Controller
      */
     public function search(Request $request)
     {
-        $query = $request->request->get('query');
+        $query = $request->query->get('query');
 
         if (\strlen($query) < 3) {
             $this->redirect('app_index_index');
