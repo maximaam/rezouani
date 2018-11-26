@@ -78,24 +78,19 @@ class IndexController extends Controller
      */
     public function search(Request $request)
     {
+        $query = $request->request->get('query');
 
-        die('ok');
-
-        $slugKey = 'slug' . ucfirst($request->getLocale());
-        $slug = $request->get('slug');
-
-        $page = $this->getDoctrine()
-            ->getRepository(Page::class)
-            ->findOneBy([$slugKey => $slug]);
-
-        if (null === $page) {
-            throw $this->createNotFoundException(
-                'Page ' . $slug . ' does not exist'
-            );
+        if (\strlen($query) < 3) {
+            $this->redirect('app_index_index');
         }
 
-        return $this->render('app/page.html.twig', [
-            'page'  => $page
+        $products = $this->getDoctrine()
+            ->getRepository(Product::class)
+            ->searchTitle($query, $request->getLocale());
+
+        return $this->render('app/search.html.twig', [
+            'query'     => $query,
+            'products'  => $products
         ]);
     }
 
@@ -121,13 +116,11 @@ class IndexController extends Controller
             $alias = 'alias' . ucfirst($request->getLocale());
 
             if (null === $subCatAlias = $request->get('subCatAlias')) { //Main categories
-
                 /** @var Category $category */
                 $category = $catRepo->findOneBy([$alias => $request->get('catAlias')]);
                 $catIds = CategoryRepository::getChildrenIds($category);
                 $products = $productRepo->fetchByCategories($catIds)->setMaxResults(12)->getQuery()->getResult();
             } else {
-
                 $category = $catRepo->findOneBy([$alias => $subCatAlias]);
                 $products = $productRepo->findBy(['category' => $category]);
             }

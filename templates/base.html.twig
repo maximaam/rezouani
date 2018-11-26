@@ -52,6 +52,19 @@
                             {% endif %}
                             -->
 
+                            <form class="form-inline mt-2 mt-md-0" method="post" action="{{ path('app_index_search') }}" onsubmit="">
+                                <div class="input-group">
+                                <input class="form-control py-2 border-right-0 border" type="search" name="query" placeholder="{{ 'label.search'|trans }}" required pattern=".{3,}" title="3 chars minimum" autocomplete="false">
+                                <!--
+                                    <span class="input-group-append">
+                                    <button class="btn btn-outline-secondary border-left-0 border" type="button">
+                                        <i class="fa fa-search"></i>
+                                    </button>
+                                </span>
+                                -->
+                                </div>
+                            </form>
+
                             <ul class="languages">
                                 <li>
                                     <a href="/de" class="{{ app.request.locale == 'de' ? 'current' }}" title="Deutsch">
@@ -70,12 +83,6 @@
                                 <i class="fa fa-shopping-basket"></i>
                             </a>
                         </div>
-                        <!--
-                        <form class="form-inline mt-2 mt-md-0">
-                            <input class="form-control mr-sm-2" type="text" placeholder="Search">
-                            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-                        </form>
-                        -->
                     </div>
                 </div>
             </nav>

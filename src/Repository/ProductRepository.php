@@ -47,4 +47,19 @@ class ProductRepository extends ServiceEntityRepository
 
         return $q->getQuery()->getResult();
     }
+
+    /**
+     * @param string $query
+     * @param string $locale
+     * @return mixed
+     */
+    public function searchTitle(string $query, string $locale)
+    {
+        $q = $this->createQueryBuilder('p')
+            ->select('p')
+            ->where('p.title' . \ucfirst($locale) . ' LIKE :title')
+            ->setParameter('title', '%' . $query . '%');
+
+        return $q->getQuery()->getResult();
+    }
 }

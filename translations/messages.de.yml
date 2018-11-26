@@ -72,6 +72,7 @@ routes:
 msg:
     confirm_delete: Löschen bestätigen?
     no_products_in_category: Zurzeit keine Ware in dieser Kategorie
+    no_search_result: 'Keine Treffer gefunden für Ihre Suche nach: %query%'
     thanks-for-order: Vielen Dank für Ihre Bestellung
     email-sent: Eine Email wurde an %buyer_email% gesendet mit der Gesamten Übersicht.
     error-to-cart-params: Fehler! Bitte korrigieren Sie Ihr Auswhal (Farbe, Größe, Menge...)

@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use App\Utils\StringHelper;
@@ -16,6 +17,16 @@ use App\Utils\StringHelper;
  * })
  * @ORM\Entity(repositoryClass="App\Repository\CategoryRepository")
  * @ORM\HasLifecycleCallbacks()
+ *  * @UniqueEntity(
+ *     fields={"nameDe", "parent"},
+ *     errorPath="nameDe",
+ *     message="Category exists already"
+ * )
+ * @UniqueEntity(
+ *     fields={"nameEn", "parent"},
+ *     errorPath="nameEn",
+ *     message="Category exists already"
+ * )
  */
 class Category
 {
@@ -48,7 +59,7 @@ class Category
      * @var string
      *
      * @Assert\NotBlank()
-     * @ORM\Column(length=128, unique=true)
+     * @ORM\Column(length=128)
      */
     private $nameDe;
 
@@ -56,21 +67,21 @@ class Category
      * @var string
      *
      * @Assert\NotBlank()
-     * @ORM\Column(length=128, unique=true)
+     * @ORM\Column(length=128)
      */
     private $nameEn;
 
     /**
      * @var string
      *
-     * @ORM\Column(length=128, unique=true)
+     * @ORM\Column(length=128)
      */
     private $aliasDe;
 
     /**
      * @var string
      *
-     * @ORM\Column(length=128, unique=true)
+     * @ORM\Column(length=128)
      */
     private $aliasEn;
 
@@ -91,7 +102,7 @@ class Category
     /**
      * @var int
      *
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="integer", nullable=true)
      */
     private $position;
 

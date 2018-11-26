@@ -72,6 +72,7 @@ routes:
 msg:
     confirm_delete: Confirm delete?
     no_products_in_category: Curently no articles in this category
+    no_search_result: 'No result for your search: %query%'
     thanks-for-order: Thank you for your order
     email-sent: An email has been sent to %buyer_email% with the complete order overview.
     error-to-cart-params: Error! Please correct your choice (Color, size, quantity...)

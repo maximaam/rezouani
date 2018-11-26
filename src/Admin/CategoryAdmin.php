@@ -56,7 +56,9 @@ class CategoryAdmin extends AbstractAdmin
                 'label' => 'Category description english',
                 'required'  => false,
             ])
-            ->add('position')
+            ->add('position', null, [
+                'required'  => false,
+            ])
         ;
     }
 
