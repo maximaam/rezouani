@@ -24,8 +24,8 @@ prod:
     scheme: ftp
     host: ftp.strato.com
     port: 21
-    user: ftp_rezouani_com@rezouani.com
-    pass: rezzzz2017
+    user: rezouani.com
+    pass: rezouan1WEB
     check: true
     path:
         #local: release/

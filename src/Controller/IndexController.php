@@ -11,12 +11,10 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Cache;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 /**
  * Class IndexController
- *
- * @Cache(expires="+1 hour", public=true)
  * @package App\Controller
  */
 class IndexController extends Controller
