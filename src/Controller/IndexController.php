@@ -70,7 +70,7 @@ class IndexController extends Controller
     }
 
     /**
-     * @Route("/{_locale}/search", name="app_index_search")
+     * @Route("/{_locale}/find", name="app_index_search")
      * @Method({"POST"})
      *
      * @param Request $request

@@ -41,7 +41,7 @@ abstract class AbstractAdmin extends SonataAbstractAdmin
      */
     public function toString($object)
     {
-        return method_exists($object, 'getTitle') ? $object->getTitle($this->request->getLocale()) : get_class($object);
+        return \method_exists($object, 'getTitle') ? $object->getTitle('de') : \get_class($object);
     }
 
     /**
