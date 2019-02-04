@@ -61,8 +61,7 @@ class Product
     /**
      * @var string
      *
-     * @Assert\NotBlank()
-     * @ORM\Column(length=128)
+     * @ORM\Column(length=128, nullable=true)
      */
     private $productNumber;
 
@@ -119,7 +118,6 @@ class Product
      * @ORM\Column(type="simple_array", nullable=true)
      */
     private $sizes;
-
 
     /**
      * @var float
@@ -213,7 +211,7 @@ class Product
     }
 
     /**
-     * @return string
+     * @return string|null
      */
     public function getProductNumber(): ?string
     {
@@ -221,10 +219,10 @@ class Product
     }
 
     /**
-     * @param string $product
-     * @return $this
+     * @param string|null $product
+     * @return Product
      */
-    public function setProductNumber(string $product): self
+    public function setProductNumber(?string $product): self
     {
         $this->productNumber = $product;
         return $this;
