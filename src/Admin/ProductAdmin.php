@@ -69,7 +69,9 @@ class ProductAdmin extends AbstractAdmin
                     return $category->fetchChildren();
                 },
             ])
-            ->add('productNumber')
+            ->add('productNumber', null, [
+                'required'  => false
+            ])
             ->add('productName', null, [
                 'required'  => false
             ])
