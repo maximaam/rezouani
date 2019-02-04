@@ -73,11 +73,13 @@
                         {% endif %}
                         <p>{{ product.description(locale)|nl2br }}</p>
                         <p>
-                            <i class="fa fa-list"></i>
                             <a href="{{ path('app_index_catalogue', {
                                 'catAlias': product.category.parent.alias(app.request.locale),
                                 'subCatAlias': product.category.alias(app.request.locale),
-                            }) }}">{{ 'label.show-all-category'|trans({'%cat%': product.category.name(app.request.locale) }) }}</a></p>
+                            }) }}">
+                                <i class="fa fa-list"></i>
+                                {{ 'label.show-all-category'|trans({'%cat%': product.category.name(app.request.locale) }) }}</a>
+                        </p>
                         <hr>
                         <ul>
                             <li>{{ 'label.product-number'|trans }}: {{ product.productNumber }}</li>

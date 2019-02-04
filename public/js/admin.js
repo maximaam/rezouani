@@ -61,11 +61,11 @@ appManager.imageUpload.upload = function($context) {
                     $tmpNamesList.val(tmpNamesListVal + filename + config.images.names_separator);
                 }
 
-                $('.' + config.images.classes.loading_img).remove();
+                helpers.removeLoadingImg();
                 $fileElement.after(helpers.renderImg(filename, $namesList.data('pk')));
             },
             error: function (filename) {
-                alert('error');
+                helpers.removeLoadingImg();
             },
         });
     });
@@ -207,6 +207,9 @@ let helpers = {
     },
     renderLoadingImg: function () {
         return '<div class="'+ config.images.classes.loading_img +'"><img src="' + config.images.dir + '/loading.gif" width="100" height="100"></div>';
+    },
+    removeLoadingImg: function () {
+        $('.' + config.images.classes.loading_img).remove();
     }
 };
 
