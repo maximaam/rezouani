@@ -13,3 +13,8 @@
 ###> symfony/web-server-bundle ###
 /.web-server-pid
 ###< symfony/web-server-bundle ###
+
+###> common ###
+.DS_Store
+/.idea/
+###< common ###
