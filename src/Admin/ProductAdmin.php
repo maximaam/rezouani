@@ -191,6 +191,9 @@ class ProductAdmin extends AbstractAdmin
             ->add('category', null, [], EntityType::class, [
                 'class'    => Category::class,
                 'choice_label' => 'nameWithSubCat',
+                'attr'  => [
+                    'data-sonata-select2' => 'false',
+                ]
             ])
             ->add('titleDe')
             ->add('titleEn')
