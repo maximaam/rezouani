@@ -189,8 +189,11 @@ class ProductAdmin extends AbstractAdmin
     {
         $datagridMapper
             ->add('category', null, [], EntityType::class, [
-                'class'    => Category::class,
-                'choice_label' => 'nameWithSubCat',
+                'class' => Category::class,
+                'choice_label' => 'getNameWithSubCat',
+                'query_builder' => function(CategoryRepository $category) {
+                    return $category->fetchChildren();
+                },
                 'attr'  => [
                     'data-sonata-select2' => 'false',
                 ]
