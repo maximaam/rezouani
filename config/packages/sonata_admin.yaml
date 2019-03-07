@@ -16,6 +16,12 @@ sonata_admin:
         blocks:
             - { type: sonata.admin.block.admin_list, position: left }
 
+        groups:
+            admins:
+                label: 'Admins'
+                icon: '<i class="fa fa-magic"></i>'
+                keep_open: true
+
 sonata_block:
     blocks:
         sonata.admin.block.admin_list:

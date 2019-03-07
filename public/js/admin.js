@@ -81,7 +81,7 @@ appManager.imageUpload.showOnUpdate = function($context) {
 
         if (images.length > 0) {
             images = images.split(config.images.names_separator);
-            $context.after('<div class="' + config.images.classes.update_uploaded_images_container + '"><h3>Current images</h3></div>');
+            $context.after('<div class="' + config.images.classes.update_uploaded_images_container + '"><h3>Aktuelle Bilder</h3></div>');
 
             images.forEach(function (filename, index) {
                 if (filename.length > 0) {
@@ -99,11 +99,9 @@ appManager.imageUpload.showOnUpdate = function($context) {
 appManager.imageUpload.delete = function($context) {
     $context.on('click', '.' + config.images.classes.delete, function() {
 
-        /*
-        if (!confirm('Please confirm delete image?')) {
+        if (!confirm('Dieses Bild löschen?')) {
             return false;
         }
-        */
 
         let $this = $(this),
             filename = $this.data('filename'),
@@ -201,8 +199,10 @@ appManager.submitForm = function($context){
 let helpers = {
     renderImg: function (filename, pk) {
         return '<div class="uploaded-images-elem">' +
-            '<img src="' + config.images.products_dir + '/' + filename +'" width="120">' +
-            '<button title="Delete" class="js_delete-image" data-filename="'+ filename +'" data-pk="'+ pk +'">X</button>' +
+            '<a href="' + config.images.products_dir + '/' + filename + '" target="_blank" title="Bild vergrößen">' +
+            '<img src="' + config.images.products_dir + '/' + filename +'" width="120" alt="Open">' +
+            '</a>' +
+            '<button title="Bild Löschen" class="js_delete-image" data-filename="'+ filename +'" data-pk="'+ pk +'">Löschen</button>' +
             '</div>';
     },
     renderLoadingImg: function () {

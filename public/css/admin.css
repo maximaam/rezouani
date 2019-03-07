@@ -31,19 +31,14 @@ textarea.large {
     margin-right: 10px;
     padding: 5px;
 }
-.uploaded-images-elem:hover img {
+.uploaded-images-elem a:hover img {
     opacity: .5;
 }
 .uploaded-images-elem button {
-    position: absolute;
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
     background: red;
     color: #fff;
     border: 1px solid #fff;
-    right: 0;
-    top: 0;
+    margin-top: 10px;
 }
 
 ul[id$="_colors"] li {

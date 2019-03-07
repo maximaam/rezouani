@@ -72,13 +72,14 @@ class PageAdmin extends AbstractAdmin
 
             ->add('createdAt', null, [
                 'format' => parent::GLOBAL_DATE_FORMAT,
-                'label' => 'Created'
+                'label' => 'Erstellt am'
             ])
             ->add('titleDe')
             ->add('titleEn')
             ->add('_action', null, [
+                'label' => false,
                 'actions' => [
-                    'show' => [],
+                    //'show' => [],
                     'edit' => [],
                     'delete' => [],
                 ]

@@ -9,7 +9,7 @@
 namespace App\Controller;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use App\Service\FileUploader;
@@ -20,7 +20,7 @@ use App\Entity\Product;
  * Class AjaxController
  * @package App\Controller
  */
-class AjaxController extends Controller
+class AjaxController extends AbstractController
 {
     /**
      * @Route("/ajx/upload-image", name="ajx_upload_image")

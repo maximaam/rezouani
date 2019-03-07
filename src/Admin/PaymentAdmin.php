@@ -69,7 +69,7 @@ class PaymentAdmin extends AbstractAdmin
         $listMapper
             ->add('createdAt', null, [
                 'format' => parent::GLOBAL_DATETIME_FORMAT,
-                'label' => 'Created'
+                'label' => 'Erstellt am'
             ])
             //->add('paymentId')
             ->add('status', 'choice', [
@@ -89,6 +89,7 @@ class PaymentAdmin extends AbstractAdmin
             ])
 
             ->add('_action', null, [
+                'label' => false,
                 'actions' => [
                     'show'      => [],
                     //'edit'      => [],
