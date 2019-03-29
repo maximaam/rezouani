@@ -38,6 +38,14 @@
                 version    : 'v3.2'
             });
 
+            FB.getLoginStatus(function(response) {
+                console.log(response);
+
+                getUser();
+
+                //statusChangeCallback(response);
+            });
+
             //FB.AppEvents.logPageView();
         };
 
@@ -51,29 +59,16 @@
 
 
         function login() {
-            FB.getLoginStatus(function(response) {
+                FB.login(function(response) {
+                    console.log(response);
+                    console.log(response.authResponse.userID);
+                }, {score: 'email'});
+        }
 
-
+        function getUser() {
+            FB.api('/me', 'GET', {fields: 'name,id'}, function (response) {
                 console.log(response);
-
-                if (response.status === 'connected') {
-                    //authResponse.userID
-                } else {
-                    FB.login(function(response) {
-                        console.log(response);
-                        console.log(response.authResponse.userID);
-                    });
-                }
-
-
-                console.log(response);
-                console.log(response.authResponse.userID);
-
-                //statusChangeCallback(response);
-            });
-
-
-
+            })
         }
     </script>
 
