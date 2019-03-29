@@ -39,19 +39,6 @@
             });
 
             //FB.AppEvents.logPageView();
-
-            FB.getLoginStatus(function(response) {
-                if (response.status === 'connected') {
-                    //authResponse.userID
-                }
-
-
-                console.log(response);
-                console.log(authResponse.userID);
-
-                //statusChangeCallback(response);
-            });
-
         };
 
         (function(d, s, id){
@@ -64,10 +51,25 @@
 
 
         function login() {
-            FB.login(function(response) {
+            FB.getLoginStatus(function(response) {
+                if (response.status === 'connected') {
+                    //authResponse.userID
+                } else {
+                    FB.login(function(response) {
+                        console.log(response);
+                        console.log(response.authResponse.userID);
+                    });
+                }
+
+
                 console.log(response);
-                console.log(authResponse.userID);
+                console.log(response.authResponse.userID);
+
+                //statusChangeCallback(response);
             });
+
+
+
         }
     </script>
 
