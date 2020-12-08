@@ -51,28 +51,26 @@ services:
     App\Admin\CategoryAdmin:
         arguments: [~, App\Entity\Category, ~]
         tags:
-            - { name: sonata.admin, manager_type: orm, label: 'Categories' }
+            - { name: sonata.admin, manager_type: orm, label: 'Kategorien', group: 'admins' }
         public: true
 
     App\Admin\ProductAdmin:
         arguments: [~, App\Entity\Product, App\Controller\AdminController]
         tags:
-            - { name: sonata.admin, manager_type: orm, label: 'Products' }
+            - { name: sonata.admin, manager_type: orm, label: 'Produkte', group: 'admins' }
         public: true
 
     App\Admin\PageAdmin:
         arguments: [~, App\Entity\Page, ~]
         tags:
-            - { name: sonata.admin, manager_type: orm, label: 'Pages' }
+            - { name: sonata.admin, manager_type: orm, label: 'Seiten', group: 'admins' }
         public: true
 
     App\Admin\PaymentAdmin:
             arguments: [~, App\Entity\Payment, ~]
             tags:
-                - { name: sonata.admin, manager_type: orm, label: 'Orders/Payments' }
+                - { name: sonata.admin, manager_type: orm, label: 'Bestellungen', group: 'admins' }
             public: true
-
-
 
     App\Service\FileUploader:
         arguments:

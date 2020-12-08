@@ -87,12 +87,15 @@ class CategoryAdmin extends AbstractAdmin
 
             ->add('createdAt', null, [
                 'format' => parent::GLOBAL_DATE_FORMAT,
-                'label' => 'Created'
+                'label' => 'Erstellt am'
             ])
-            ->add('nameWithSubCat')
+            ->add('nameWithSubCat', null, [
+                'label' => 'Kategorie -> Unterkategorie'
+            ])
             ->add('position')
 
             ->add('_action', null, [
+                'label' => false,
                 'actions' => [
                     //'show'      => [],
                     'edit'      => [],

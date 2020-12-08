@@ -22,6 +22,58 @@
 
     <body>
 
+
+    <!--
+    <div id="fb-root"></div>
+    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/fr_FR/sdk.js#xfbml=1&version=v3.2&appId=263627287859491&autoLogAppEvents=1"></script>
+    -->
+
+
+    <!--
+    <script>
+        window.fbAsyncInit = function() {
+            FB.init({
+                appId      : '263627287859491',
+                cookie     : true,
+                xfbml      : true,
+                version    : 'v3.2'
+            });
+
+            FB.getLoginStatus(function(response) {
+                console.log(response);
+
+                getUser();
+
+                //statusChangeCallback(response);
+            });
+
+            //FB.AppEvents.logPageView();
+        };
+
+        (function(d, s, id){
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) {return;}
+            js = d.createElement(s); js.id = id;
+            js.src = "https://connect.facebook.net/en_US/sdk.js";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+
+
+        function login() {
+                FB.login(function(response) {
+                    console.log(response);
+                    console.log(response.authResponse.userID);
+                }, {score: 'email'});
+        }
+
+        function getUser() {
+            FB.api('/me', 'GET', {fields: 'name,id'}, function (response) {
+                console.log(response);
+            })
+        }
+    </script>
+    -->
+
         <header class="main-header">
             <nav class="navbar fixed-top navbar-expand-lg navbar-dark">
                 <div class="container">
@@ -50,6 +102,17 @@
                                     <i class="fa fa-user-circle"></i>
                                 </a>
                             {% endif %}
+                            -->
+
+                            <!--
+                            <div
+                                    class="fb-login-button"
+                                    data-size="large"
+                                    data-button-type="login_with"
+                                    data-auto-logout-link="false"
+                                    data-use-continue-as="true"
+                                    onclick="login()">
+                            </div>
                             -->
 
                             <form class="form-inline mt-2 mt-md-0" method="get" action="{{ path('app_index_search') }}" onsubmit="">

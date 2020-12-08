@@ -45,6 +45,7 @@
                     {% endfor %}
 
                     <h1>{{ product.title(locale)}}</h1>
+
                     <div id="carousel-product" class="carousel slide" data-ride="carousel">
                         {% set imgSeparator = constant('App\\Entity\\Product::IMG_SEPARATOR') %}
                         {% set images = product.images|trim(imgSeparator)|split(imgSeparator) %}
@@ -73,11 +74,20 @@
                         {% endif %}
                         <p>{{ product.description(locale)|nl2br }}</p>
                         <p>
-                            <i class="fa fa-list"></i>
                             <a href="{{ path('app_index_catalogue', {
                                 'catAlias': product.category.parent.alias(app.request.locale),
-                                'subCatAlias': product.category.alias(app.request.locale),
-                            }) }}">{{ 'label.show-all-category'|trans({'%cat%': product.category.name(app.request.locale) }) }}</a></p>
+                                'subCatAlias': product.category.alias(app.request.locale)}) }}">
+                                <i class="fa fa-list"></i>
+                                {{ 'label.show-all-category'|trans({'%cat%': product.category.name(app.request.locale) }) }}
+                            </a>
+                        </p>
+
+                        {% if app.user and app.user.username == 'info@rezouani.com' %}
+                            <a href="{{ path('admin_app_product_edit', {'id' : product.id }) }}" class="float-right" target="_blank">
+                                <i class="fa fa-edit"></i>
+                                Bearbeiten
+                            </a>
+                        {% endif %}
                         <hr>
                         <ul>
                             <li>{{ 'label.product-number'|trans }}: {{ product.productNumber }}</li>

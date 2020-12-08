@@ -59,29 +59,61 @@ class ProductAdmin extends AbstractAdmin
         $sizes = Product::getAvailableSizes();
 
         $formMapper
+            ->with('Kategorie* (pflicht)', ['class' => 'col-md-6'])
             ->add('category', EntityType::class, [
-                'placeholder'   => 'Select category...',
+                'placeholder'   => '...',
                 'required'      => true,
+                'label' => false,
                 'class'         => Category::class,
                 'choice_label'  => 'nameWithSubCat',
                 'choice_translation_domain' => 'messages',
-                'query_builder' => function (CategoryRepository $category) {
+                'query_builder' => function(CategoryRepository $category) {
                     return $category->fetchChildren();
                 },
+                'attr'  => [
+                   // 'data-sonata-select2-allow-clear' => 'true',
+                   'data-sonata-select2' => 'false',
+                ],
             ])
-            ->add('productNumber')
+            ->end()
+            ->with('Produkt Nummer (optionnal)', ['class' => 'col-md-6'])
+            ->add('productNumber', null, [
+                'required'  => false,
+                'label' => false,
+            ])
+            ->end()
+            /*
+            ->with('Produkt Name (optionnal)', ['class' => 'col-md-3'])
             ->add('productName', null, [
-                'required'  => false
+                'required'  => false,
+                'label' => false,
             ])
-            ->add('titleDe')
-            ->add('titleEn')
-            ->add('descriptionDe')
-            ->add('descriptionEn')
+            ->end()
+            */
+
+            ->with('Produktmerkmale auf Deutsch', ['class' => 'col-md-6'])
+            ->add('titleDe', null, [
+                'label' => 'Titel'
+            ])
+            ->add('descriptionDe', null, [
+                'label' => 'Beschreibung'
+            ])
+            ->end()
+
+            ->with('Produktmerkmale auf Englisch', ['class' => 'col-md-6'])
+            ->add('titleEn', null, [
+                'label' => 'Titel'
+            ])
+            ->add('descriptionEn', null, [
+                'label' => 'Beschreibung'
+            ])
+            ->end()
 
             ->add('colors', ChoiceType::class, [
                 'choices' => array_combine($colors, $colors),
                 'expanded'  => true,
                 'multiple'  => true,
+                'label' => 'Farben',
                 'choice_translation_domain' => 'messages',
                 'attr'  => [
                     'class' => 'list-inline',
@@ -97,6 +129,7 @@ class ProductAdmin extends AbstractAdmin
             ->add('sizes', ChoiceType::class, [
                 'choices' => array_combine($sizes, $sizes),
                 'required'  => false,
+                'label' => 'Größen',
                 'expanded'  => true,
                 'multiple'  => true,
                 'attr'  => [
@@ -104,8 +137,12 @@ class ProductAdmin extends AbstractAdmin
                 ],
             ])
 
-            ->add('price', MoneyType::class)
-            ->add('topItem')
+            ->add('price', MoneyType::class, [
+                'label' => 'Preis',
+            ])
+            ->add('topItem', null, [
+                'label' => 'Top Produkt: Zeige dieses Produkt auf der Startseite',
+            ])
 
             ->add('images', HiddenType::class, [
                 'attr' => [
@@ -126,8 +163,8 @@ class ProductAdmin extends AbstractAdmin
                 //'entry_type'    => ImagesType::class,
                 //'allow_add'     => true,
                 //'allow_delete'  => true,
-                'label' => 'Upload new images',
-                'required'      => ($product->getId() === null || empty($product->getImages())),
+                'label' => 'Bilder hinzufügen',
+                'required'      => false,
                 'mapped'        => false,
                 'attr'  => [
                     'class' => 'js_upload-image',
@@ -143,15 +180,6 @@ class ProductAdmin extends AbstractAdmin
 
     }
 
-
-    /**
-     * @param ErrorElement $errorElement
-     * @param $object
-     */
-    public function validate(ErrorElement $errorElement, $object)
-    {
-    }
-
     /**
      * Filters
      *
@@ -160,7 +188,21 @@ class ProductAdmin extends AbstractAdmin
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
         $datagridMapper
+            ->add('category', null, [], EntityType::class, [
+                'class' => Category::class,
+                'choice_label' => 'getNameWithSubCat',
+                'query_builder' => function(CategoryRepository $category) {
+                    return $category->fetchChildren();
+                },
+                'attr'  => [
+                    'data-sonata-select2' => 'false',
+                ]
+            ])
             ->add('titleDe')
+            ->add('titleEn')
+            ->add('productNumber', null, [
+                'label' => 'Produkt Nummer'
+            ])
         ;
     }
 
@@ -176,21 +218,36 @@ class ProductAdmin extends AbstractAdmin
 
             ->add('createdAt', null, [
                 'format' => parent::GLOBAL_DATE_FORMAT,
-                'label' => 'Created'
+                'label' => 'Erstellt am'
             ])
             ->add('category.nameWithSubCat', null, [
-                'label' => 'Category'
+                'label' => 'Kategorie'
             ])
-            ->add('titleDe')
-            ->add('titleEn')
-            ->add('price')
-            ->add('topItem')
+            ->add('titleDe', null, [
+                'label' => 'Titel Deutsch'
+            ])
+            ->add('titleEn', null, [
+                'label' => 'Titel Englisch'
+            ])
+            ->add('productNumber', null, [
+                'label' => 'Produkt Nummer'
+            ])
+            ->add('price', null, [
+                'label' => 'Preis'
+            ])
+            ->add('topItem', null, [
+                'label' => 'Top Produkt'
+            ])
 
             ->add('_action', null, [
                 'actions' => [
-                    'show'      => [],
+                    //'show'      => [],
                     'edit'      => [],
-                    'delete'    => [],
+                    'delete'    => [
+                        'attr'  => [
+                            'class' => 'btn-danger'
+                        ]
+                    ],
                 ]
             ])
         ;

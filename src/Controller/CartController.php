@@ -4,12 +4,12 @@ namespace App\Controller;
 
 
 use App\Entity\Payment;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Component\HttpFoundation\{Request, Response};
 use App\Utils\ProductHelper;
-use Symfony\Component\Translation\TranslatorInterface;
+use Symfony\Contracts\Translation\TranslatorInterface;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
@@ -21,7 +21,7 @@ use App\Entity\Product;
  *
  * @Route("{_locale}/cart")
  */
-class CartController extends Controller
+class CartController extends AbstractController
 {
     /**
      * @Route("/add/{id}")
@@ -30,8 +30,8 @@ class CartController extends Controller
      * @param $id
      * @param Request $request
      * @param SessionInterface $session
+     * @param TranslatorInterface $translator
      * @return \Symfony\Component\HttpFoundation\RedirectResponse
-     * @throws \Exception
      */
     public function add($id, Request $request, SessionInterface $session, TranslatorInterface $translator)
     {

@@ -8,16 +8,17 @@ use App\Entity\Product;
 use App\Repository\CategoryRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Cache;
 
 /**
  * Class IndexController
  * @package App\Controller
  */
-class IndexController extends Controller
+class IndexController extends AbstractController
 {
     /**
      * @Route("/", name="app_index_index")
@@ -64,9 +65,11 @@ class IndexController extends Controller
             );
         }
 
-        return $this->render('app/page.html.twig', [
-            'page'  => $page
-        ]);
+        $response = $this->render('app/page.html.twig', ['page' => $page]);
+
+        $response->setSharedMaxAge(5555);
+
+        return $response;
     }
 
     /**
@@ -102,6 +105,7 @@ class IndexController extends Controller
      *     defaults={"subCatAlias" = null, "itemId" = null}
      *     )
      *
+     * @Cache(expires="tomorrow", public=true)
      * @param Request $request
      * @return Response
      */

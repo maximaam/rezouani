@@ -1,5 +1,7 @@
 ###> symfony/framework-bundle ###
 /.env.local
+/.env.local.php
+/.env.*.local
 /public/images/products
 /public/bundles/
 /var/
@@ -13,3 +15,10 @@
 ###> symfony/web-server-bundle ###
 /.web-server-pid
 ###< symfony/web-server-bundle ###
+
+###> common ###
+.DS_Store
+/.idea/
+###< common ###
+
+/dploy.yaml
