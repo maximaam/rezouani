@@ -2,22 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="33f1704c-508e-4a3f-9b85-c43941dba30c" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/templates/app/cart/index2.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/app/partials/payment-short.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.env.local" beforeDir="false" afterPath="$PROJECT_DIR$/.env.local" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/packages/swiftmailer.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/swiftmailer.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dploy.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/dploy.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Admin/PaymentAdmin.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Admin/PaymentAdmin.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/AjaxController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/AjaxController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/CartController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/CartController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/IndexController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/IndexController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/app/cart/confirmPayment.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/app/cart/confirmPayment.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/app/cart/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/app/cart/index.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/app/cart/initPayment.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/app/cart/initPayment.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/app/product.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/app/product.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/base.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/translations/messages.de.yml" beforeDir="false" afterPath="$PROJECT_DIR$/translations/messages.de.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -388,7 +373,7 @@
       <workItem from="1543240334700" duration="1803000" />
       <workItem from="1549139803544" duration="5768000" />
       <workItem from="1607424659182" duration="31000" />
-      <workItem from="1607431199707" duration="17952000" />
+      <workItem from="1607431199707" duration="18244000" />
     </task>
     <servers />
   </component>
