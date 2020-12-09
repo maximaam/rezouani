@@ -9,9 +9,9 @@ parameters:
     product_images_dir: '%kernel.project_dir%/public/images/products'
     app_secret: '%env(APP_SECRET)%'
 
-    mailer_user: 'mimoberlino@gmail.com'
-    mailer_from: 'no-reply@sparheld.de'
-    mailer_sold_item: 'mimoberlino@gmail.com'
+    mailer_user: '%env(MAILER_USERNAME)%'
+    mailer_from: '%env(MAILER_USERNAME)%'
+    mailer_sold_item: '%env(MAILER_USERNAME)%'
 
     site_name: 'Rezouani'
     site_host: 'rezouani.com'

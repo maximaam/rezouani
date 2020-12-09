@@ -216,7 +216,6 @@ class CartController extends AbstractController
             ]
         );
 
-        /*
         $message = (new Swift_Message($translator->trans('payment.email-subject')))
             ->setFrom($this->getParameter('mailer_from'), 'REZOUANI.com')
             ->setTo($payment->getBuyerEmail())
@@ -227,10 +226,8 @@ class CartController extends AbstractController
             ->setTo($this->getParameter('mailer_sold_item'))
             ->setBody($body, 'text/html');
 
-
         $mailer->send($message);
         $mailer->send($messageAdmin);
-        */
 
         $session->set('cart', []); //Empty session cart
 
