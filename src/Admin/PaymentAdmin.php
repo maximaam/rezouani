@@ -10,12 +10,10 @@ namespace App\Admin;
 
 use App\Admin\AbstractAdmin as AbstractAdmin;
 
-use App\Entity\Payment;
 use Sonata\AdminBundle\Datagrid\{ListMapper, DatagridMapper};
 use Sonata\AdminBundle\Form\FormMapper,
     Sonata\AdminBundle\Show\ShowMapper;
 use Sonata\AdminBundle\Route\RouteCollection;
-use Symfony\Component\Form\Extension\Core\Type\UrlType;
 
 /**
  * Class PaymentAdmin
@@ -30,11 +28,7 @@ class PaymentAdmin extends AbstractAdmin
      */
     protected function configureFormFields(FormMapper $formMapper)
     {
-
-        $formMapper
-            ->add('delivered')
-        ;
-
+        $formMapper->add('delivered');
     }
 
     /**
@@ -56,7 +50,12 @@ class PaymentAdmin extends AbstractAdmin
     {
         $datagridMapper
             ->add('status')
-        ;
+            ->add('buyerName', null, [
+                'label' => 'Käufer Name'
+            ])
+            ->add('buyerEmail', null, [
+                'label' => 'Käufer Email'
+            ]);
     }
 
     /**
@@ -69,7 +68,7 @@ class PaymentAdmin extends AbstractAdmin
         $listMapper
             ->add('createdAt', null, [
                 'format' => parent::GLOBAL_DATETIME_FORMAT,
-                'label' => 'Erstellt am'
+                'label' => 'Erstellt am',
             ])
             //->add('paymentId')
             ->add('status', 'choice', [
@@ -79,15 +78,19 @@ class PaymentAdmin extends AbstractAdmin
                     2 => 'Bezahlt',
                 ],
             ])
-            ->add('buyerName')
-            ->add('buyerEmail')
+            ->add('buyerName', null, [
+                'label' => 'Käufer Name'
+            ])
+            ->add('buyerEmail', null, [
+                'label' => 'Käufer Email'
+            ])
             ->add('amount', null, [
                 'label' => 'Summe (EUR)'
             ])
             ->add('delivered', null, [
-                'editable'  => true
+                'editable'  => true,
+                'label' => 'Verschickt',
             ])
-
             ->add('_action', null, [
                 'label' => false,
                 'actions' => [
@@ -108,26 +111,42 @@ class PaymentAdmin extends AbstractAdmin
         $showMapper
             ->add('createdAt', null, [
                 'format' => parent::GLOBAL_DATETIME_FORMAT,
-                'label' => 'Created'
+                'label' => 'Erstellt am',
             ])
-            ->add('paymentId')
+            ->add('paymentId', null, [
+                'label' => 'PayPal Zahlungs-ID',
+            ])
             //->add('status')
             //->add('productsIds')
             ->add('productsContent', null, [
-                'safe'  => true
+                'safe'  => true,
+                'label' => 'Gekaufte Artikel',
             ])
-            ->add('buyerName')
-            ->add('buyerEmail')
+            ->add('buyerName', null, [
+                'label' => 'Käufer Name',
+            ])
+            ->add('buyerEmail', null, [
+                'label' => 'Käufer Email',
+            ])
             ->add('buyerAddress', null, [
-                'safe'  => true
+                'safe'  => true,
+                'label' => 'Käufer Adresse',
             ])
             ->add('amount', null, [
                 'label' => 'Summe (EUR)'
             ])
             ->add('delivered', null, [
-                'editable'  => true
+                'editable'  => true,
+                'label' => 'Verschickt',
             ])
         ;
+    }
 
+    /**
+     * @return string[]
+     */
+    public function getExportFormats(): array
+    {
+        return ['xls'];
     }
 }

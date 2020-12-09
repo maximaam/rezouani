@@ -29,7 +29,7 @@ class AjaxController extends AbstractController
      * @param FileUploader $uploader
      * @return Response
      */
-    public function uploadImage(Request $request, FileUploader $uploader)
+    public function uploadImage(Request $request, FileUploader $uploader): Response
     {
         if (count($request->files)) {
             foreach ($request->files as $file) {
@@ -47,7 +47,7 @@ class AjaxController extends AbstractController
      * @param FileUploader $uploader
      * @return Response
      */
-    public function deleteImage(Request $request, FileUploader $uploader)
+    public function deleteImage(Request $request, FileUploader $uploader): Response
     {
         $filename = $request->query->get('filename');
         $productId = (int)$request->query->get('pk');

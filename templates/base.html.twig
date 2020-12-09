@@ -164,17 +164,11 @@
                         {{ knp_menu_render('footer') }}
                     </div>
                     <div class="col-md-4">
-                        <p class="copyright">
+                        <p class="copyright text-white">
                             <small>
-                                &copy; {{ 'copyright'|trans }}
+                                &copy; {{ "now"|date('Y') }} {{ 'copyright'|trans }}
                             </small>
                         </p>
-                        <!--
-                        <form id="search" name="search" action="{{ path('app_index_search') }}" method="post">
-                            <input type="text" name="query" id="query" placeholder="{{ 'label.search|trans' }}...">
-                            <button type="submit" class="btn btn-primary">OK</button>
-                        </form>
-                        -->
                     </div>
                     <div class="col-md-4 socials">
                         <a href="https://www.facebook.com/Rezouani-Leder-ImportExport-Berlin-401470737274935/" target="_blank">
@@ -185,8 +179,6 @@
                         </a>
                     </div>
                 </div>
-
-
             </div>
         </footer>
 
@@ -202,9 +194,8 @@
         {% block javascripts %}{% endblock %}
 
 
-
     <div id="overlay">
-        <img src="{{ asset('../images/loading.gif') }}">
+        <img src="{{ asset('../images/loading.gif') }}" alt="Loading img">
     </div>
     </body>
 

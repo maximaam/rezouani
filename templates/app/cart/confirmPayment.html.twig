@@ -8,18 +8,14 @@
         {% set totals = cart.totals %}
 
         <div class="container">
-
-
             <div class="row">
                 <div class="table-responsive">
-
                     <div class="alert alert-success">
                         {{ 'msg.thanks-for-order'|trans }}
                     </div>
                     <p>
                         {{ 'msg.email-sent'|trans({'%buyer_email%': payment.buyerEmail}) }}
                     </p>
-
 
                     <h1 class="text-center">{{ 'cart.order-overview'|trans }}</h1>
                     <br>

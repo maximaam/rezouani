@@ -5,34 +5,31 @@
 {% endblock %}
 
 {% block body %}
-
     <div class="container">
         <div class="row">
 
         {% if cart is defined and cart|length  %}
+            {% set products = cart.products %}
+            {% set totals = cart.totals %}
 
-                {% set products = cart.products %}
-                {% set totals = cart.totals %}
-
-                <div class="table-responsive">
-                    <h1 class="text-center">{{ 'cart.my-cart'|trans }}</h1>
-                    <table class="table table-stripped table-hover">
-                        <thead>
-                            <tr>
-                                <th>{{ 'label.title'|trans }}</th>
-                                <th>{{ 'label.product-number'|trans }}</th>
-                                <th>{{ 'label.color'|trans }}</th>
-                                <th>{{ 'label.size'|trans }}</th>
-                                <th>{{ 'label.quantity'|trans }}</th>
-                                <th>{{ 'label.price-unit'|trans }}</th>
-                                <th>{{ 'label.price-total'|trans }}</th>
-                                <th></th>
-                            </tr>
+            <div class="table-responsive">
+                <h1 class="text-center">{{ 'cart.my-cart'|trans }}</h1>
+                <table class="table table-stripped table-hover">
+                    <thead>
+                        <tr>
+                            <th>{{ 'label.title'|trans }}</th>
+                            <th>{{ 'label.product-number'|trans }}</th>
+                            <th>{{ 'label.color'|trans }}</th>
+                            <th>{{ 'label.size'|trans }}</th>
+                            <th>{{ 'label.quantity'|trans }}</th>
+                            <th>{{ 'label.price-unit'|trans }}</th>
+                            <th>{{ 'label.price-total'|trans }}</th>
+                            <th></th>
+                        </tr>
                         </thead>
 
                         <tbody>
                         {% for id, product in products %}
-
                             <tr>
                                 <td>{{ product.title }}</td>
                                 <td>{{ product.productNumber }}</td>
@@ -77,29 +74,29 @@
                                     </a>
                                 </td>
                                 <td colspan="6" class="text-right">
-
                                     <div id="paypal-button"></div>
-
                                     <script>
                                         paypal.Button.render({
-
                                             env: 'sandbox', // sandbox | production
 
                                             // PayPal Client IDs - replace with your own
                                             // Create a PayPal app: https://developer.paypal.com/developer/applications/create
                                             client: {
-                                                sandbox:'Ac0fAc4OEB3v6EBakEo6KQcFoIhmJwsrnvCDFuydXCzQZoDQPVEkaFvxwxJ_fWo6ABTHt0UY370CXPs6',
+                                                //sandbox:'Ac0fAc4OEB3v6EBakEo6KQcFoIhmJwsrnvCDFuydXCzQZoDQPVEkaFvxwxJ_fWo6ABTHt0UY370CXPs6',
+                                                //production:'Ad6WCjJRMUK7XMKUO4VUWKWbJKlZCHI_XwSqpgGYmJlizc2X9l-vsKaZ-aIE4deyPT88nLiZngHZmApE',
+
+                                                sandbox:'AdUVhh-zVXp_IJDgJo9VWWOd5q4PRQ8-CHL5mPtP4uxmg1TTyJh_Xq2JSRf_fExRD6Lqv3MT2Oa4T8ad',
                                                 production:'Ad6WCjJRMUK7XMKUO4VUWKWbJKlZCHI_XwSqpgGYmJlizc2X9l-vsKaZ-aIE4deyPT88nLiZngHZmApE'
                                             },
 
                                             // Show the buyer a 'Pay Now' button in the checkout flow
                                             //commit: true,
 
-                                            locale: '{{ app.request.locale == 'de'  ? 'de_DE' }}',
+                                            locale: '{{ app.request.locale == 'de'  ? 'de_DE' : 'en_US' }}',
 
                                             style: {
                                                 color: 'gold',
-                                                size: 'medium'
+                                                size: 'medium',
                                             },
 
                                             // payment() is called when the button is clicked
@@ -123,11 +120,13 @@
 
                                             // onAuthorize() is called when the buyer approves the payment
                                             onAuthorize: function(data, actions) {
-                                                //return actions.redirect();
-
                                                 return actions.payment.get().then(function(paymentDetails) {
                                                     $.post('{{ path("app_cart_create-payment") }}', {paymentDetails: paymentDetails})
-                                                        .done(function( status ) {
+                                                        .done(function(status) {
+                                                            if (status !== 'success') {
+                                                                alert('Fehler. Bitte versuchen Sie es nochmals');
+                                                                return false;
+                                                            }
 
                                                             $('#overlay').show();
 
@@ -151,14 +150,13 @@
                                         }, '#paypal-button');
 
                                     </script>
-
-
-
                                 </td>
                             </tr>
                         </tfoot>
 
                     </table>
+
+                {{ include('app/partials/payment-short.html.twig', {locale: app.request.locale}) }}
                 </div>
 
             {% else %}

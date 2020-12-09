@@ -21,11 +21,11 @@ stage:
         remote: public_html/
 
 prod:
-    scheme: ftp
-    host: ftp.strato.com
-    port: 21
-    user: ftp_rezouani_com@rezouani.com
-    pass: rezzzz2017
+    scheme: sftp
+    host: ssh.strato.de
+    port: 22
+    user: sftp_rezouani@rezouani.com
+    pass: rezou$SFTP1984%
     check: true
     path:
         #local: release/

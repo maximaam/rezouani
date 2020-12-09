@@ -7,13 +7,10 @@
         <div class="row">
 
             {% if product|length == 0 %}
-
                 <div class="alert alert-info">
                     {{ 'msg.no_products_in_category'|trans }}
                 </div>
-
             {% else %}
-
                 <div class="col-md-3">
                     <div class="row">
                         <div class="container">
@@ -26,7 +23,6 @@
                     {{ knp_menu_render(subCatMenu) }}
 
                     <blockquote class="cat-desc">
-
                         {% if product.category.parent == null %}
                             <i class="fa fa-quote-right"></i>
                             <p>
@@ -150,6 +146,8 @@
                                 </button>
                             </div>
                         </form>
+
+                        {{ include('app/partials/payment-short.html.twig', {locale: locale}) }}
                     </div>
                 </div>
             </div>

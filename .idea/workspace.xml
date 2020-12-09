@@ -2,22 +2,22 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="33f1704c-508e-4a3f-9b85-c43941dba30c" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.env~HEAD" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/rezouani.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/rezouani.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/app/cart/index2.html.twig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/app/partials/payment-short.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env.local" beforeDir="false" afterPath="$PROJECT_DIR$/.env.local" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/bundles.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/bundles.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/packages/doctrine_migrations.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/doctrine_migrations.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/packages/sonata_core.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/packages/twig_extensions.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repository/CategoryRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/CategoryRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repository/PageRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/PageRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repository/PaymentRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/PaymentRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repository/ProductRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/ProductRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repository/UserRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/UserRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/symfony.lock" beforeDir="false" afterPath="$PROJECT_DIR$/symfony.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/packages/swiftmailer.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/swiftmailer.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dploy.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/dploy.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Admin/PaymentAdmin.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Admin/PaymentAdmin.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/AjaxController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/AjaxController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/CartController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/CartController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/IndexController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/IndexController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/app/cart/confirmPayment.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/app/cart/confirmPayment.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/app/cart/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/app/cart/index.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/app/cart/initPayment.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/app/cart/initPayment.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/app/product.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/app/product.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/base.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/translations/messages.de.yml" beforeDir="false" afterPath="$PROJECT_DIR$/translations/messages.de.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -343,7 +343,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/templates/app/cart" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
@@ -354,11 +354,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/templates/app/cart" />
       <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/templates/app" />
       <recent name="$PROJECT_DIR$/public/images" />
       <recent name="$PROJECT_DIR$/translations" />
-      <recent name="$PROJECT_DIR$/templates" />
     </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -388,7 +388,7 @@
       <workItem from="1543240334700" duration="1803000" />
       <workItem from="1549139803544" duration="5768000" />
       <workItem from="1607424659182" duration="31000" />
-      <workItem from="1607431199707" duration="5114000" />
+      <workItem from="1607431199707" duration="17952000" />
     </task>
     <servers />
   </component>

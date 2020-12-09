@@ -11,7 +11,6 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Cache;
 
 /**
@@ -25,7 +24,7 @@ class IndexController extends AbstractController
      *
      * @return Response
      */
-    public function index()
+    public function index(): Response
     {
         $leather = $this->getDoctrine()
             ->getRepository(Product::class)
@@ -50,7 +49,7 @@ class IndexController extends AbstractController
      * @param Request $request
      * @return Response
      */
-    public function page(Request $request)
+    public function page(Request $request): Response
     {
         $slugKey = 'slug' . ucfirst($request->getLocale());
         $slug = $request->get('slug');
@@ -79,7 +78,7 @@ class IndexController extends AbstractController
      * @param Request $request
      * @return Response
      */
-    public function search(Request $request)
+    public function search(Request $request): Response
     {
         $query = $request->query->get('query');
 
@@ -109,7 +108,7 @@ class IndexController extends AbstractController
      * @param Request $request
      * @return Response
      */
-    public function catalogue(Request $request)
+    public function catalogue(Request $request): Response
     {
         $catRepo = $this->getDoctrine()->getRepository(Category::class);
         $productRepo = $this->getDoctrine()->getRepository(Product::class);
@@ -139,8 +138,6 @@ class IndexController extends AbstractController
                 'product'  => $productRepo->find($itemId)
             ]);
         }
-
-
     }
 
 }

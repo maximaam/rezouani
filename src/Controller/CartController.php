@@ -2,12 +2,13 @@
 
 namespace App\Controller;
 
-
 use App\Entity\Payment;
+use Swift_Mailer;
+use Swift_Message;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Symfony\Component\HttpFoundation\{Request, Response};
+use Symfony\Component\HttpFoundation\{RedirectResponse, Request, Response};
 use App\Utils\ProductHelper;
 use Symfony\Contracts\Translation\TranslatorInterface;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
@@ -31,9 +32,9 @@ class CartController extends AbstractController
      * @param Request $request
      * @param SessionInterface $session
      * @param TranslatorInterface $translator
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     * @return RedirectResponse
      */
-    public function add($id, Request $request, SessionInterface $session, TranslatorInterface $translator)
+    public function add($id, Request $request, SessionInterface $session, TranslatorInterface $translator): RedirectResponse
     {
         if (!$session->has('cart')) {
             $session->set('cart', []);
@@ -78,14 +79,15 @@ class CartController extends AbstractController
      *
      * @param $id
      * @param SessionInterface $session
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @return Response
      */
-    public function remove($id, SessionInterface $session)
+    public function remove($id, SessionInterface $session): Response
     {
         $cart = $session->get('cart');
         unset($cart[$id]);
 
         $session->set('cart', $cart);
+
         return $this->redirectToRoute('app_cart_index');
     }
 
@@ -95,9 +97,9 @@ class CartController extends AbstractController
      *
      * @param Request $request
      * @param SessionInterface $session
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @return Response
      */
-    public function index(Request $request, SessionInterface $session)
+    public function index(Request $request, SessionInterface $session): Response
     {
         if (!$session->has('cart') || empty($session->get('cart'))) {
             return $this->render('app/cart/index.html.twig', [
@@ -121,7 +123,7 @@ class CartController extends AbstractController
      * @Method("POST")
      *
      * @param Request $request
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
+     * @return RedirectResponse|Response
      */
     public function createPayment(Request $request): Response
     {
@@ -182,12 +184,12 @@ class CartController extends AbstractController
      * @Method("GET")
      *
      * @param Request $request
-     * @param \Swift_Mailer $mailer
+     * @param Swift_Mailer $mailer
      * @param TranslatorInterface $translator
      * @param SessionInterface $session
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
+     * @return RedirectResponse|Response
      */
-    public function confirmPayment(Request $request, \Swift_Mailer $mailer, TranslatorInterface $translator, SessionInterface $session)
+    public function confirmPayment(Request $request, Swift_Mailer $mailer, TranslatorInterface $translator, SessionInterface $session)
     {
         $paymentId = $request->query->get('paymentId');
         $cart = $this->get('session')->get('cart');
@@ -214,18 +216,21 @@ class CartController extends AbstractController
             ]
         );
 
-        $message = (new \Swift_Message($translator->trans('payment.email-subject')))
-            ->setFrom($this->container->getParameter('mailer_from'), 'REZOUANI.com')
+        /*
+        $message = (new Swift_Message($translator->trans('payment.email-subject')))
+            ->setFrom($this->getParameter('mailer_from'), 'REZOUANI.com')
             ->setTo($payment->getBuyerEmail())
             ->setBody($body, 'text/html');
 
-        $messageAdmin = (new \Swift_Message('Verkauf bei Rezouani.com - Kopie von EMail'))
-            ->setFrom($this->container->getParameter('mailer_from'), 'Rezouani.com')
-            ->setTo($this->container->getParameter('mailer_sold_item'))
+        $messageAdmin = (new Swift_Message('Verkauf bei Rezouani.com - Kopie von EMail'))
+            ->setFrom($this->getParameter('mailer_from'), 'Rezouani.com')
+            ->setTo($this->getParameter('mailer_sold_item'))
             ->setBody($body, 'text/html');
+
 
         $mailer->send($message);
         $mailer->send($messageAdmin);
+        */
 
         $session->set('cart', []); //Empty session cart
 
@@ -239,7 +244,7 @@ class CartController extends AbstractController
      * @Route("/cancel-payment", name="app_cart_cancel-payment")
      * @param Request $request
      *
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
+     * @return RedirectResponse|Response
      */
     public function cancelPayment(Request $request): Response
     {
@@ -250,7 +255,7 @@ class CartController extends AbstractController
     /**
      * @return Product[]
      */
-    private function getProductsFromSession()
+    private function getProductsFromSession(): array
     {
         return $this->getDoctrine()
             ->getManager()
@@ -261,7 +266,7 @@ class CartController extends AbstractController
     /**
      * @return array
      */
-    private function getProductsIds()
+    private function getProductsIds(): array
     {
         $session = $this->get('session');
 
