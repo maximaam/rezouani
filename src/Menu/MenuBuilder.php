@@ -10,15 +10,21 @@ namespace App\Menu;
 
 use App\Entity\Category;
 use App\Entity\Page;
-use App\Repository\CategoryRepository;
 use Knp\Menu\FactoryInterface;
+use Knp\Menu\ItemInterface;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Doctrine\ORM\EntityManager;
 use Symfony\Component\Translation\TranslatorInterface;
 
+/**
+ * Class MenuBuilder
+ * @package App\Menu
+ */
 class MenuBuilder
 {
-
+    /**
+     * @var FactoryInterface
+     */
     private $factory;
 
     /**
@@ -43,11 +49,7 @@ class MenuBuilder
      * @param TranslatorInterface $translator
      * @param EntityManager $em
      */
-    public function __construct(
-        FactoryInterface $factory,
-        RequestStack $request,
-        TranslatorInterface $translator,
-        EntityManager $em)
+    public function __construct(FactoryInterface $factory, RequestStack $request, TranslatorInterface $translator, EntityManager $em)
     {
         $this->factory = $factory;
         $this->request = $request;
@@ -57,9 +59,9 @@ class MenuBuilder
 
     /**
      * @param array $options
-     * @return \Knp\Menu\ItemInterface
+     * @return ItemInterface
      */
-    public function createMainMenu(array $options)
+    public function createMainMenu(array $options): ItemInterface
     {
         $menu = $this->factory->createItem('root');
         $menu->setChildrenAttribute('class', 'navbar-nav mr-auto');
@@ -81,7 +83,7 @@ class MenuBuilder
                 'linkAttributes' => ['class' => 'nav-link'],
                 'routeParameters' => [
                     'catAlias' => $category->getAlias($locale)
-                ]
+                ],
             ]);
         }
 
@@ -90,9 +92,9 @@ class MenuBuilder
 
     /**
      * @param array $options
-     * @return \Knp\Menu\ItemInterface
+     * @return ItemInterface
      */
-    public function createSubCategoryMenu(array $options)
+    public function createSubCategoryMenu(array $options): ItemInterface
     {
         $locale = $this->request->getCurrentRequest()->getLocale();
 
@@ -119,7 +121,7 @@ class MenuBuilder
                 'routeParameters' => [
                     'catAlias' => $currentCategory->getAlias($locale),
                     'subCatAlias' => $category->getAlias($locale),
-                ]
+                ],
             ]);
         }
 
@@ -128,9 +130,9 @@ class MenuBuilder
 
     /**
      * @param array $options
-     * @return \Knp\Menu\ItemInterface
+     * @return ItemInterface
      */
-    public function createFooterMenu(array $options)
+    public function createFooterMenu(array $options): ItemInterface
     {
         $menu = $this->factory->createItem('root');
         $menu->setChildrenAttribute('class', 'footer-nav');

@@ -49,19 +49,12 @@ footer.main-footer {
 .footer-nav a {
     color: #fff;
 }
-
 .navbar {
     background: #fcb00a;
 }
-
-.navbar-brand img {
-    border-radius: .3rem;
-}
-
 .navbar-nav .nav-item {
     margin-right: 5px;
 }
-
 .navbar-nav a.nav-link {
     color: #fff !important;
     letter-spacing: 1px;
@@ -99,6 +92,11 @@ footer.main-footer {
     height: 20px;
     border-radius: 50%;
     box-shadow: 0 0 0 3px #fff;
+}
+
+.navbar-brand {
+    padding-bottom: 0;
+    padding-top: 0;
 }
 
 .navbar .user-cart a span.active {
@@ -340,6 +338,10 @@ img.page-img {
     margin-right: 10px;
 }
 
+#subcat-list {
+    display: none;
+}
+
 @media (min-width:1025px) { /* big landscape tablets, laptops, and desktops */
 
     /*
@@ -356,8 +358,13 @@ img.page-img {
 }
 
 /* Smartphones (portrait and landscape) ----------- */
-
 @media only screen and (min-width : 320px) and (max-width : 480px) {
+    #subcat-list {
+        display: block;
+    }
+    .navbar-subcategory {
+        display: none;
+    }
     .navbar-nav a.nav-link {
         background: transparent;
         border-bottom: 1px solid #ccc;

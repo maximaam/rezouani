@@ -1,15 +1,26 @@
 <!DOCTYPE html>
 <html lang="{{ app.request.locale }}">
 
+{% set title = site_name %}
+
     <head>
         <meta charset="utf-8">
-        <title>{% block title %}{{ site_name }}!{% endblock %}</title>
+        <title>{% block title %}{{ title }}!{% endblock %}</title>
 
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="keywords" content="Fennek-Store, lederwaren, Sommerwaren, Winterwaren, Kopfbedeckung, Berlin">
+        <meta name="description" content="Lederwaren, Saisonwaren & Geschenkartikel in Berlin.">
         <meta name="robots" content="index,follow">
         <meta name="author" content="{{ site_name }}">
+        <meta name="title" content="{{ title }}!">
 
+        <meta property="og:type" content="website">
+        <meta property="og:url" content="https://{{ app.request.host ~ app.request.pathInfo }}">
+        <meta property="og:title" content="{{ title }}!">
+        <meta property="og:description" content="Lederwaren, Saisonwaren & Geschenkartikel in Berlin.">
+
+        <link href="https://{{ app.request.host ~ app.request.pathInfo }}" rel="canonical">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
         <link href="https://fonts.googleapis.com/css?family=Titillium+Web" rel="stylesheet">
@@ -21,64 +32,11 @@
     </head>
 
     <body>
-
-
-    <!--
-    <div id="fb-root"></div>
-    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/fr_FR/sdk.js#xfbml=1&version=v3.2&appId=263627287859491&autoLogAppEvents=1"></script>
-    -->
-
-
-    <!--
-    <script>
-        window.fbAsyncInit = function() {
-            FB.init({
-                appId      : '263627287859491',
-                cookie     : true,
-                xfbml      : true,
-                version    : 'v3.2'
-            });
-
-            FB.getLoginStatus(function(response) {
-                console.log(response);
-
-                getUser();
-
-                //statusChangeCallback(response);
-            });
-
-            //FB.AppEvents.logPageView();
-        };
-
-        (function(d, s, id){
-            var js, fjs = d.getElementsByTagName(s)[0];
-            if (d.getElementById(id)) {return;}
-            js = d.createElement(s); js.id = id;
-            js.src = "https://connect.facebook.net/en_US/sdk.js";
-            fjs.parentNode.insertBefore(js, fjs);
-        }(document, 'script', 'facebook-jssdk'));
-
-
-        function login() {
-                FB.login(function(response) {
-                    console.log(response);
-                    console.log(response.authResponse.userID);
-                }, {score: 'email'});
-        }
-
-        function getUser() {
-            FB.api('/me', 'GET', {fields: 'name,id'}, function (response) {
-                console.log(response);
-            })
-        }
-    </script>
-    -->
-
         <header class="main-header">
             <nav class="navbar fixed-top navbar-expand-lg navbar-dark">
                 <div class="container">
                     <a class="navbar-brand" href="/">
-                        <img src="{{ asset('images/logo-fennek-store.jpg') }}" alt="{{ site_name }} Logo" title="{{ site_name }}" width="50" height="50">
+                        <img src="{{ asset('images/logo-fennek-store.png') }}" alt="{{ site_name }} Logo" title="{{ site_name }}" width="50" height="50">
                     </a>
 
                     <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
@@ -86,59 +44,19 @@
                     </button>
 
                     <div class="collapse navbar-collapse" id="navbarCollapse">
-
                         {{ knp_menu_render('main') }}
-
                         <div class="user-cart form-inline mt-2 mt-md-0">
                             {% set cartItems = app.session.get('cart')|length %}
 
-                            <!--
-                            {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-                                <a href="{{ path('fos_user_profile_show') }}" title="{{ app.user.username }}" class="logged">
-                                    <i class="fa fa-user-circle"></i>
-                                </a>
-                            {% else %}
-                                <a href="{{ path('fos_user_security_login') }}" title="{{ 'label.login'|trans }}">
-                                    <i class="fa fa-user-circle"></i>
-                                </a>
-                            {% endif %}
-                            -->
-
-                            <!--
-                            <div
-                                    class="fb-login-button"
-                                    data-size="large"
-                                    data-button-type="login_with"
-                                    data-auto-logout-link="false"
-                                    data-use-continue-as="true"
-                                    onclick="login()">
-                            </div>
-                            -->
-
                             <form class="form-inline mt-2 mt-md-0" method="get" action="{{ path('app_index_search') }}" onsubmit="">
                                 <div class="input-group">
-                                <input class="form-control py-2 border-right-0 border" type="search" name="query" placeholder="{{ 'label.search'|trans }}" required pattern=".{3,}" title="3 chars minimum" autocomplete="false" value="{{ app.request.get('query') }}">
-                                <!--
-                                    <span class="input-group-append">
-                                    <button class="btn btn-outline-secondary border-left-0 border" type="button">
-                                        <i class="fa fa-search"></i>
-                                    </button>
-                                </span>
-                                -->
+                                    <input class="form-control py-2 border-right-0 border" type="search" name="query" placeholder="{{ 'label.search'|trans }}" required pattern=".{3,}" title="3 chars minimum" autocomplete="false" value="{{ app.request.get('query') }}">
                                 </div>
                             </form>
 
                             <ul class="languages">
-                                <li>
-                                    <a href="/de" class="{{ app.request.locale == 'de' ? 'current' }}" title="Deutsch">
-                                        DE
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="/en" class="{{ app.request.locale == 'en' ? 'current' }}" title="English">
-                                        EN
-                                    </a>
-                                </li>
+                                <li><a href="/de" class="{{ app.request.locale == 'de' ? 'current' }}" title="Deutsch">DE</a></li>
+                                <li><a href="/en" class="{{ app.request.locale == 'en' ? 'current' }}" title="English">EN</a></li>
                             </ul>
 
                             <a href="{{ path('app_cart_index') }}" class="cart" title="{{ 'cart.my-cart'|trans }} {{ cartItems }}">
@@ -150,13 +68,7 @@
                 </div>
             </nav>
         </header>
-
-        <main>
-            {% block body %}
-
-            {% endblock %}
-        </main>
-
+        <main>{% block body %}{% endblock %}</main>
         <footer class="main-footer text-muted">
             <div class="container">
                 <div class="row">
@@ -165,9 +77,7 @@
                     </div>
                     <div class="col-md-4">
                         <p class="copyright text-white">
-                            <small>
-                                &copy; {{ "now"|date('Y') }} {{ 'copyright'|trans }}
-                            </small>
+                            <small>&copy; {{ "now"|date('Y') }} {{ 'copyright'|trans }}</small>
                         </p>
                     </div>
                     <div class="col-md-4 socials">
@@ -179,7 +89,6 @@
             </div>
         </footer>
 
-
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <!--
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
@@ -190,10 +99,9 @@
         <script src="{{ asset('js/app.js') }}"></script>
         {% block javascripts %}{% endblock %}
 
-
-    <div id="overlay">
-        <img src="{{ asset('../images/loading.gif') }}" alt="Loading img">
-    </div>
+        <div id="overlay">
+            <img src="{{ asset('../images/loading.gif') }}" alt="Loading img">
+        </div>
     </body>
 
 </html>
