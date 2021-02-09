@@ -1,15 +1,8 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <!--
-        <script src="https://www.paypal.com/sdk/js?client-id=AYP85U056JOOZDT8FhvoIwXAxN9DcpEvL0eNnMfMVbzTJLtK_uwWKtN94Hu2Oj7ish7XHtCfE-2KbQRg&currency=EUR"></script>
-
-    -->
-    <script src="https://www.paypal.com/sdk/js?client-id=Ad6WCjJRMUK7XMKUO4VUWKWbJKlZCHI_XwSqpgGYmJlizc2X9l-vsKaZ-aIE4deyPT88nLiZngHZmApE&currency=EUR" data-sdk-integration-source="button-factory"></script>
-
     <div class="container">
         <div class="row">
-
         {% if cart is defined and cart|length  %}
             {% set products = cart.products %}
             {% set totals = cart.totals %}
@@ -76,31 +69,17 @@
                                     </a>
                                 </td>
                                 <td colspan="6" class="text-right">
-                                    <!--
-                                    <div id="paypal-button-container"></div>
-                                    <script>
-                                        paypal.Buttons({
-                                            createOrder: function(data, actions) {
-                                                // This function sets up the details of the transaction, including the amount and line item details.
-                                                return actions.order.create({
-                                                    purchase_units: [{
-                                                        amount: {
-                                                            value: '0.01'
-                                                        }
-                                                    }]
-                                                });
-                                            }
-                                            }).render('#paypal-button-container');
-                                        // This function displays Smart Payment Buttons on your web page.
-                                    </script>
-                                    -->
-
                                     <div id="smart-button-container">
                                         <div style="text-align: center;">
                                             <div id="paypal-button-container"></div>
                                         </div>
                                     </div>
 
+                                    <script src="https://www.paypal.com/sdk/js?client-id=AY5Js6weY-E4vW_ANJPkOctMNNw4l6MaPRKaW-tgMcw2Hw-aLunnPf2Mn66hlaNHdN-r1VFJAkpHpUu6&currency=EUR" data-sdk-integration-source="button-factory"></script>
+
+                                    <!--
+                                    <script src="https://www.paypal.com/sdk/js?client-id=AdUVhh-zVXp_IJDgJo9VWWOd5q4PRQ8-CHL5mPtP4uxmg1TTyJh_Xq2JSRf_fExRD6Lqv3MT2Oa4T8ad&currency=EUR" data-sdk-integration-source="button-factory"></script>
+                                    -->
                                     <script>
                                         function initPayPalButton() {
                                             paypal.Buttons({
@@ -108,42 +87,13 @@
                                                     shape: 'rect',
                                                     color: 'gold',
                                                     layout: 'horizontal',
-                                                    label: 'buynow',
+                                                    label: 'paypal',
+
                                                 },
 
                                                 createOrder: function(data, actions) {
                                                     return actions.order.create({
-                                                        purchase_units: [{
-                                                                "description":"blabla item",
-                                                                "amount":{
-                                                                    "currency_code":"EUR",
-                                                                    "value":100
-                                                                },
-                                                                "items": [
-                                                                    {
-                                                                        "name": "T-Shirt",
-                                                                        "description": "Green XL",
-                                                                        "sku": "sku01",
-                                                                        "unit_amount": {
-                                                                            "currency_code": "EUR",
-                                                                            "value": "90.00"
-                                                                        },
-                                                                        "quantity": "1",
-                                                                        "category": "PHYSICAL_GOODS"
-                                                                    },
-                                                                    {
-                                                                        "name": "Shoes",
-                                                                        "description": "Running, Size 10.5",
-                                                                        "sku": "sku02",
-                                                                        "unit_amount": {
-                                                                            "currency_code": "EUR",
-                                                                            "value": "5.00"
-                                                                        },
-                                                                        "quantity": "2",
-                                                                        "category": "PHYSICAL_GOODS"
-                                                                    }
-                                                                ]
-                                                            }]
+                                                        purchase_units: [{"description":"fsdfsdfsdf","amount":{"currency_code":"EUR","value":5}}]
                                                     });
                                                 },
 

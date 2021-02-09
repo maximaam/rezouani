@@ -1,6 +1,6 @@
 sonata_admin:
     title: 'Admin'
-    title_logo: '/images/logo-rezouani.jpg'
+    title_logo: '/images/logo-fennek.jpg'
     show_mosaic_button: false
 
       #options:

@@ -13,8 +13,8 @@ parameters:
     mailer_from: '%env(MAILER_USERNAME)%'
     mailer_sold_item: '%env(MAILER_USERNAME)%'
 
-    site_name: 'Rezouani'
-    site_host: 'rezouani.com'
+    site_name: 'Fennek-Store'
+    site_host: 'fennek-store.de'
 
 services:
     # default configuration for services in *this* file

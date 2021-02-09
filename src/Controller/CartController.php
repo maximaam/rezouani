@@ -217,12 +217,12 @@ class CartController extends AbstractController
         );
 
         $message = (new Swift_Message($translator->trans('payment.email-subject')))
-            ->setFrom($this->getParameter('mailer_from'), 'REZOUANI.com')
+            ->setFrom($this->getParameter('mailer_from'), $this->getParameter('site_host'))
             ->setTo($payment->getBuyerEmail())
             ->setBody($body, 'text/html');
 
-        $messageAdmin = (new Swift_Message('Verkauf bei Rezouani.com - Kopie von EMail'))
-            ->setFrom($this->getParameter('mailer_from'), 'Rezouani.com')
+        $messageAdmin = (new Swift_Message('Verkauf bei '.$this->getParameter('site_host').' - Kopie von EMail'))
+            ->setFrom($this->getParameter('mailer_from'), $this->getParameter('site_host'))
             ->setTo($this->getParameter('mailer_sold_item'))
             ->setBody($body, 'text/html');
 

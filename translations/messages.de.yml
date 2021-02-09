@@ -1,10 +1,10 @@
 label:
     more: Mehr
     welcome:
-        title: Willkommen bei REZOUANI!
+        title: Willkommen bei Fennek-Store!
         sub-title: Lederwaren, Saisonwaren & Geschenkartikel in Berlin.
         desc: |
-            REZ Import/Export is ein Unternehmen mit Sitz in Berlin, was sich auf Herstellung und Vermarktung von Leder Waren spezialisiert hat. Ob Damen Portemonnaies, Herren Portemonnaies, Taschen oder Handschuhe, REZ Import/Export bietet Hochqualität Leder mit bester Verarbeitung.
+            Fennek-Store is ein Unternehmen mit Sitz in Berlin, was sich auf Herstellung und Vermarktung von Leder Waren spezialisiert hat. Ob Damen Portemonnaies, Herren Portemonnaies, Taschen oder Handschuhe, Fennek-Store bietet Hochqualität Leder mit bester Verarbeitung.
     top-products: Top Produkte
     details: Details anzeigen
     price: Preis
@@ -107,11 +107,11 @@ nav:
         route: about_us_de
 
 payment:
-    email-subject: Ihre Bestellung bei REZOUANI
+    email-subject: Ihre Bestellung bei Fennek-Store
     email-msg-part1: Hallo %buyer_name%,
     email-msg-part2: Vielen Dank für Ihren Kauf!
-    email-msg-part3: Bestellungsübersicht:
-    email-msg-part4: Lieferadresse:
-    email-msg-part5: Ihr REZOUANI-Team
+    email-msg-part3: 'Bestellungsübersicht:'
+    email-msg-part4: 'Lieferadresse:'
+    email-msg-part5: Ihr Fennek-Store-Team
 
-copyright: Copyright REZOUANI.com - Alle Rechte vorbehalten
+copyright: Copyright Fennek-Store - Alle Rechte vorbehalten
