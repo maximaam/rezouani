@@ -20,15 +20,14 @@
 
     <tbody>
     {% for id, product in cart.products %}
-
         <tr>
             <td>{{ product.title }}</td>
-            <td>{{ product.productNumber }}</td>
+            <td>{{ product.product_number }}</td>
             <td>{{ product.color|trans }}</td>
             <td>{{ product.size|length > 0 ? product.size : '-' }}</td>
             <td>{{ product.quantity }}</td>
             <td>{{ product.price|number_format(2, ',', '.') }} <i class="fa fa-eur"></i></td>
-            <td>{{ product.fullPrice|number_format(2, ',', '.') }} <i class="fa fa-eur"></i></td>
+            <td>{{ product.full_price|number_format(2, ',', '.') }} <i class="fa fa-eur"></i></td>
         </tr>
     {% endfor %}
     </tbody>
@@ -59,6 +58,5 @@
     {{ data.postal_code }} {{ data.city }}<br>
     {{ data.country_code }}<br>
 </address>
-
 
 <p>{{ 'payment.email-msg-part5'|trans }}</p>

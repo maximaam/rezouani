@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: mimosa
- * Date: 23.05.18
- * Time: 13:47
- */
 
 namespace App\Controller;
 
@@ -14,12 +8,8 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use App\Service\FileUploader;
 use App\Entity\Product;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 
-
-/**
- * Class AjaxController
- * @package App\Controller
- */
 class AjaxController extends AbstractController
 {
     /**
@@ -33,6 +23,16 @@ class AjaxController extends AbstractController
     {
         if (count($request->files)) {
             foreach ($request->files as $file) {
+                if (\is_array($file)) {
+                    $file = new UploadedFile(
+                        $file['tmp_name'],
+                        $file['name'],
+                        $file['type'] ?? null,
+                        $file['error'],
+                        true // $test mode
+                    );
+                }
+
                 $filename = $uploader->upload($file);
 
                 return new Response($filename);

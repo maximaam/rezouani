@@ -1,28 +1,34 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: mimosa
- * Date: 21.04.17
- * Time: 12:06
- */
 
 namespace App\Utils;
 
 use App\Entity\Product;
 
-
-/**
- * Class ProductHelper
- * @package App\Utils
- */
 class ProductHelper
 {
-
-    /**
-     * Tex
-     */
     const VAT = 19;
 
+    public static function computeCard(array $cart)
+    {
+        $data = [];
+        $total = 0;
+        foreach ($cart  as $itemKey => $item) {
+            $total +=  $item['full_price'];
+            $data[$itemKey] = $item;
+            $exclTax = round($total / (( self::VAT / 100) +1 ), 2);
+            $result = [
+                'products' => $data,
+                'totals' => [
+                    'excl_tax'  => $exclTax,
+                    'vat'   => round($total - $exclTax, 2),
+                    'total' => $total,
+                ]
+            ];
+
+        }
+
+        return $result;
+    }
 
     /**
      * Calculate card data
@@ -32,37 +38,50 @@ class ProductHelper
      * @param $locale
      * @return array
      */
-    public static function computeCard(array $products, array $cart, $locale)
+    public static function computeCard2(array $products, array $cart, $locale)
     {
         $data = [];
         $total = 0;
 
         /** @var Product $product */
         foreach ($products as $product) {
-            $fullPrice = $product->getPrice() * $cart[$product->getId()]['quantity'];
-            $total += $fullPrice;
+            // $fullPrice = $product->getPrice() * $cart[$product->getId()]['quantity'];
+            
+            
+            foreach ($cart  as $itemKey => $item) {
+                // dump($item);
+                $itemCartKey = self::getItemCartKey($product->getId(), $item);
+                $total +=  $item['full_price'];
 
-            $raw = [
-                'title'     => $product->getTitle($locale),
-                'productNumber'     => $product->getProductNumber(),
-                //'slug'      => $product->getSlugFr(),
-                'quantity'  => $cart[$product->getId()]['quantity'],
-                'size'      => $cart[$product->getId()]['size'],
-                'color'      => $cart[$product->getId()]['color'],
-                'price'     => $product->getPrice(),
-                'fullPrice' => $fullPrice
-            ];
+                $raw = [
+                    'id' => $product->getId(),
+                    'title'     => $product->getTitle($locale),
+                    'productNumber'     => $product->getProductNumber(),
+                    //'slug'      => $product->getSlugFr(),
+                    'quantity'  => $item['quantity'],
+                    'size'      => $item['size'],
+                    'color'      => $item['color'],
+                    'price'     => $product->getPrice(),
+                    'fullPrice' => $item['full_price']
+                ];
 
-            if (!isset($data[$product->getId()])) {
-                $data[$product->getId()] = $raw;
-            } else {
-                $data[$product->getId()][] = $raw;
+                $data[$itemCartKey] = $raw;
+
+                /*
+                if (!isset($data[$itemCartKey])) {
+                    $data[$itemCartKey] = $raw;
+                } else {
+                    $data[$itemCartKey][] = $raw;
+                }
+                    */
             }
         }
 
         $exclTax = round($total / (( self::VAT / 100) +1 ), 2);
 
-        return [
+        // dd($data);
+
+        $result = [
             'products' => $data,
             'totals' => [
                 'excl_tax'  => $exclTax,
@@ -70,5 +89,11 @@ class ProductHelper
                 'total' => $total,
             ]
         ];
+
+        dd($result);
+
+
+        return $result;
     }
+    
 }

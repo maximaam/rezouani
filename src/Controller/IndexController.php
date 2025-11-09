@@ -13,10 +13,6 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Cache;
 
-/**
- * Class IndexController
- * @package App\Controller
- */
 class IndexController extends AbstractController
 {
     /**
@@ -28,7 +24,7 @@ class IndexController extends AbstractController
     {
         $leather = $this->getDoctrine()
             ->getRepository(Product::class)
-            ->findBy(['topItem' => true], null, 12);
+            ->findBy(['topItem' => true], ['updatedAt' => 'DESC'], 18);
 
         /*
         $categories = $this->getDoctrine()

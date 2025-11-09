@@ -29,19 +29,18 @@
                         </thead>
 
                         <tbody>
-                        {% for id, product in products %}
+                        {% for itemKey,product in products %}
                             <tr>
-                                <td>{{ product.title }}</td>
-                                <td>{{ product.productNumber }}</td>
+                                <td><a href="{{ product.item_url }}">{{ product.title }}</a></td>
+                                <td>{{ product.product_number }}</td>
                                 <td>{{ product.color|trans }}</td>
                                 <td>{{ product.size|length > 0 ? product.size : '-' }}</td>
                                 <td>{{ product.quantity }}</td>
                                 <td>{{ product.price|number_format(2, ',', '.') }} <i class="fa fa-eur"></i></td>
-                                <td>{{ product.fullPrice|number_format(2, ',', '.') }} <i class="fa fa-eur"></i></td>
+                                <td>{{ product.full_price|number_format(2, ',', '.') }} <i class="fa fa-eur"></i></td>
                                 <td>
                                     <div class="pull-right">
-
-                                        <a href="{{ path('app_cart_remove', {'id': id}) }}" title="{{ 'form.delete'|trans }}" rel="nofollow" class="btn btn-danger">
+                                        <a href="{{ path('app_cart_remove', {'itemKey': itemKey}) }}" title="{{ 'form.delete'|trans }}" rel="nofollow" class="btn btn-danger">
                                             <i class="fa fa-trash"></i>
                                         </a>
                                     </div>

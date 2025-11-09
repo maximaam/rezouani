@@ -30,6 +30,8 @@ use Symfony\Component\Form\Extension\Core\Type\{
     HiddenType, UrlType, FileType, ChoiceType, MoneyType, TextareaType, FormType, CollectionType
 };
 
+use Symfony\Component\OptionsResolver\OptionsResolver;
+
 use Sonata\CoreBundle\Form\Type\CollectionType as SonataCollectionType;
 
 use App\Entity\{
@@ -177,6 +179,22 @@ class ProductAdmin extends AbstractAdmin
                 //'help'          => $product->getId() ? '<img src="/images/products/">' : '',
             ])
         ;
+
+        $formMapper->getFormBuilder()->addEventListener(FormEvents::PRE_SUBMIT, function (FormEvent $event) {
+            $data = $event->getData();
+
+            // Remove auto-upload file field junk
+            unset(
+                $data['name'],
+                $data['full_path'],
+                $data['type'],
+                $data['tmp_name'],
+                $data['error'],
+                $data['size']
+            );
+
+            $event->setData($data);
+        });
 
     }
 

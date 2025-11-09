@@ -13,13 +13,9 @@ use App\Utils\ProductHelper;
 use Symfony\Contracts\Translation\TranslatorInterface;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
-
 use App\Entity\Product;
 
 /**
- * Class CartController
- * @package AppBundle\Controller
- *
  * @Route("{_locale}/cart")
  */
 class CartController extends AbstractController
@@ -46,11 +42,10 @@ class CartController extends AbstractController
         $color = $request->request->get('color');
         $size = $request->request->get('size');
 
+        /** @var Product $product */
+        $product = $this->getDoctrine()->getRepository(Product::class)->find($id);
+
         if ($quantity <= 0 || !in_array($color, Product::getAvailableColors())) {
-
-            /** @var Product $product */
-            $product = $this->getDoctrine()->getRepository(Product::class)->find($id);
-
             $this->addFlash(
                 'error',
                 $translator->trans('msg.error-to-cart-params')
@@ -63,29 +58,38 @@ class CartController extends AbstractController
             ]);
         }
 
-        $cart[$id] = [
+        $key = $id.'_'.$color.'_'.$size;
+        $itemUrl = $this->generateUrl('app_index_catalogue', [
+            'catAlias' => $product->getCategory()->getParent()->getAlias($request->getLocale()),
+            'subCatAlias' => $product->getCategory()->getAlias($request->getLocale()),
+            'itemId' => $product->getId()],
+            UrlGeneratorInterface::ABSOLUTE_URL
+        );
+        $cart[$key] = [
+            'id'        => $id,
+            'title' => $product->getTitle($request->getLocale()),
+            'product_number'     => $product->getProductNumber(),
             'quantity'  => $quantity,
             'color'     => $color,
-            'size'      => $size
+            'size'      => $size,
+            'price' => $product->getPrice(),
+            'full_price' => $product->getPrice() * $quantity,
+            'item_url' => $itemUrl
         ];
 
         $session->set('cart', $cart);
+
         return $this->redirectToRoute('app_cart_index');
     }
 
     /**
-     * @Route("/remove/{id}")
+     * @Route("/remove/{itemKey}", name="app_cart_remove")
      * @Method("GET")
-     *
-     * @param $id
-     * @param SessionInterface $session
-     * @return Response
      */
-    public function remove($id, SessionInterface $session): Response
+    public function remove(string $itemKey, SessionInterface $session): Response
     {
         $cart = $session->get('cart');
-        unset($cart[$id]);
-
+        unset($cart[$itemKey]);
         $session->set('cart', $cart);
 
         return $this->redirectToRoute('app_cart_index');
@@ -95,11 +99,10 @@ class CartController extends AbstractController
      * @Route("/", name="app_cart_index")
      * @Method("GET")
      *
-     * @param Request $request
      * @param SessionInterface $session
      * @return Response
      */
-    public function index(Request $request, SessionInterface $session): Response
+    public function index(SessionInterface $session): Response
     {
         if (!$session->has('cart') || empty($session->get('cart'))) {
             return $this->render('app/cart/index.html.twig', [
@@ -108,13 +111,9 @@ class CartController extends AbstractController
         }
 
         $cart = $session->get('cart');
-        $products = $this->getProductsFromSession();
-
-        //$mobileDetector = $this->get('mobile_detect.mobile_detector');
-        //$view = $mobileDetector->isMobile() ? '_mobile' : '';
 
         return $this->render('app/cart/index.html.twig', [
-            'cart'  => ProductHelper::computeCard($products, $cart, $request->getLocale())
+            'cart'  => ProductHelper::computeCard($cart)
         ]);
     }
 
@@ -156,9 +155,7 @@ class CartController extends AbstractController
             );
             $productsContent .= '<li><a href="'.$url.'" target="_blank">'.$product->getTitle($request->getLocale()).'</a></li>';
         }
-
         $productsContent .= '</ul>';
-
 
         $payment = new Payment();
         $payment->setStatus(Payment::STATUS_INIT)
@@ -204,10 +201,7 @@ class CartController extends AbstractController
         $payment->setStatus(Payment::STATUS_CONFIRM);
         $this->getDoctrine()->getManager()->flush();
 
-        $productsDetails = ProductHelper::computeCard(
-            $this->getProductsFromSession(),
-            $cart,
-            $request->getLocale());
+        $productsDetails = ProductHelper::computeCard($cart);
 
         //Create email
         $body = $this->renderView('app/partials/email-buyer.html.twig', [
@@ -239,15 +233,13 @@ class CartController extends AbstractController
 
     /**
      * @Route("/cancel-payment", name="app_cart_cancel-payment")
-     * @param Request $request
      *
      * @return RedirectResponse|Response
      */
-    public function cancelPayment(Request $request): Response
+    public function cancelPayment(): Response
     {
         return $this->redirectToRoute('app_cart_index');
     }
-
 
     /**
      * @return Product[]
@@ -272,8 +264,13 @@ class CartController extends AbstractController
         }
 
         $cart = $session->get('cart');
+        $ids = [];
 
-        return array_keys($cart);
+        foreach ($cart as $item) {
+            $ids[] = $item['id'];
+        }
+
+        return $ids;
     }
 
 }
